@@ -6,8 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{592EC1E0-6430-4F7E-A6DC-6ED6AC2C317A}"
 	ProjectSection(SolutionItems) = preProject
 		config.wyam = config.wyam
-		Site\Views\LICENSE = Site\Views\LICENSE
-		Site\Views\README.md = Site\Views\README.md
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site", "Site\Site.csproj", "{D4FF9249-B407-461C-9439-003451B1FC18}"
