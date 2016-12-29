@@ -198,6 +198,7 @@
     <Content Include="Views\Tag\_Layout.cshtml" />
     <Content Include="Views\Page\Tag.cshtml" />
     <Content Include="Views\Page\Archive.cshtml" />
+    <Content Include="Views\Project\MeilCliNet.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
