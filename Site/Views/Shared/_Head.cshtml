@@ -1,0 +1,65 @@
+﻿@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var globalMetadata = context.GlobalMetadata;
+    var metadata = Model.Metadata;
+}
+@{
+    string title = metadata.String("Title",null) ?? globalMetadata.String("Title",string.Empty);
+    string description = metadata.String("Description",null) ?? metadata.String("Excerpt",null) ?? globalMetadata.String("Description",string.Empty);
+    string pageImage = metadata.String("Image",null);
+    string imageUrl;
+    if(pageImage != null) {
+        imageUrl = $"{globalMetadata.String("SiteUrl",string.Empty)}/Asset/Image/{pageImage}";
+    } else {
+        imageUrl = $"{globalMetadata.String("SiteUrl",string.Empty)}/Asset/Image/favicon/android-icon-192x192.png";
+    }
+}
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@Html.Raw(title)</title>
+
+<meta name="description" content="@Html.Raw(description)">
+<meta property="og:description" content="@Html.Raw(description)" />
+<meta property="og:title" content="@Html.Raw(title)" />
+<meta name="author" content="@Html.Raw(globalMetadata.String("Title",string.Empty))" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Html.Raw(globalMetadata.String("TwitterCardOwner",string.Empty))">
+<meta name="twitter:title" content="@Html.Raw(title)">
+<meta name="twitter:description" content="@Html.Raw(description)">
+<meta name="twitter:image:src" content="@Html.Raw(imageUrl)">
+
+<link rel="apple-touch-icon" sizes="57x57" href="/Asset/Image/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/Asset/Image/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/Asset/Image/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/Asset/Image/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/Asset/Image/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/Asset/Image/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/Asset/Image/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/Asset/Image/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Asset/Image/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/Asset/Image/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/Asset/Image/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/Asset/Image/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Asset/Image/favicon/favicon-16x16.png">
+<link rel="manifest" href="/Asset/Image/favicon/manifest.json">
+<meta name="msapplication-TileImage" content="/Asset/Image/favicon/ms-icon-144x144.png">
+
+<link rel="stylesheet" href="/Asset/Css/bootstrap.min.css">
+<link rel="stylesheet" href="/Asset/Css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/Asset/Css/vs.css">
+<link rel="stylesheet" href="/Asset/Css/main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/6c0013e839.css">
+
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="/Asset/Js/jquery-1.12.2.min.js"></script>
+<script src="/Asset/Js/bootstrap.min.js"></script>
+

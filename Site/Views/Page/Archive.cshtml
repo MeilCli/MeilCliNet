@@ -1,0 +1,91 @@
+﻿---
+Title: Archive
+---
+@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var globalMetadata = context.GlobalMetadata;
+    var metadata = Model.Metadata;
+}
+
+@section head{
+    <script src="/Asset/Js/jquery.infinitescroll.min.js"></script>
+}
+@section footer_script{
+    <script>
+        $(function () {
+            $('#scroll').infinitescroll({
+                loading: {
+                    finishedMsg: "",
+                    msgText: "<em>読み込み中...</em>",
+                    selector: null,
+                    speed: 'fast',
+                },
+                navSelector: ".navigation",
+                nextSelector: ".navigation a",
+                itemSelector: ".scroll_content"
+            });
+        });
+    </script>
+}
+
+<div id="scroll">
+    <div class="scroll_content">
+        @{
+            int count = 0;
+        }
+        @foreach(var page in Model.Get("PageDocuments",Enumerable.Empty<IDocument>())) {
+            if(count > 0 || Model.Get("CurrentPage",1) != 1) {
+                <hr />
+            }
+            count++;
+            <h2 class="h2">
+                <a href="@context.GetLink(page).Replace("/index","")">@Html.Raw(page.String("Title",string.Empty))</a>
+            </h2>
+            string description = page.String("Description",null) ?? page.String("Excerpt",null) ?? globalMetadata.String("Description",string.Empty);
+            <p>@Html.Raw(description)</p>
+            if(page.String("Image",null) != null) {
+                <p class="thumbnail"><img src="/Asset/Image/@page.String("Image")" alt="image" /></p>
+            }
+            <div class="text-right">
+                @if(page.ContainsKey("Date")) {
+                    <ul class="list-inline">
+                        <li class="tag"><i class="fa fa-calendar" aria-hidden="true"></i></li>
+                        @{
+                            DateTime date = page.Get("Date",DateTime.MinValue);
+                            string dateText = $"{date.Year}年{date.Month}月{date.Day}日";
+                        }
+                        <li class="tag">@dateText</li>
+                    </ul>
+                            }
+                <ul class="list-inline">
+                    @if(page.Get("Tags",null) != null) {
+                        <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                        foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
+                            <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                        }
+                    }
+                    @if(page.Get("IsLibrary",false)) {
+                        <li class="tag"><span class="label label-info">Library</span></li>
+                    }
+                    @if(page.Get("IsApplication",false)) {
+                        <li class="tag"><span class="label label-warning">Application</span></li>
+                    }
+                    @if(page.Get("IsWebSite",false)) {
+                        <li class="tag"><span class="label label-success">WebSite</span></li>
+                    }
+                </ul>
+            </div>
+                            }
+
+    </div>
+</div>
+<div class="navigation">
+    @if(Model.Get("HasNextPage",false)) {
+        string page = $"index-{Model.Get("CurrentPage",1) + 1}.html";
+        <a href="@page">次へ</a>
+    }
+</div>
+

@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "../Shared/_Layout";
+}
+@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var globalMetadata = context.GlobalMetadata;
+    var metadata = Model.Metadata;
+}
+@section head{
+    @RenderSection("head",required: false)
+}
+@section footer_script{
+    @RenderSection("footer_script",required: false)
+}
+
+<ol class="breadcrumb">
+    <li><a href="/">Top</a></li>
+    <li class="active">@Html.Raw(Model.String("Title",string.Empty))</li>
+</ol>
+<div class="page-header">
+    <h1>@Html.Raw(Model.String("Title",string.Empty))</h1>
+</div>
+@RenderBody()

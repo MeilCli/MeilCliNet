@@ -1,0 +1,241 @@
+﻿---
+Title: HKJson
+Tags: [Android, Kotlin]
+Description: Jsonを扱いやすくするライブラリ
+IsProduct: true
+IsLibrary: true
+IsRecommended: true
+LinkGithub: https://github.com/MeilCli/HKJson
+LinkBintray: https://bintray.com/meilcli/maven/HKJson/view
+---
+<p>
+    KotlinでJson扱うとき楽にするAndroid4.0.3以上向けライブラリ。<del>JsonLibraryを入れるのがめんどくさくてAndroidの組み込み使ってるからAndroid向けになってるとは言えない…</del>
+</p>
+<h1>
+    使用方法
+</h1>
+
+
+<h2>
+    gradle
+</h2>
+
+<pre><code>
+dependencies {
+   compile 'net.meilcli:hkjson:1.2.0'
+}
+</code></pre>
+
+
+<h2>
+    サンプル
+</h2>
+
+<pre><code class="language-kotlin">
+import net.meilcli.hkjson.HKJson
+import net.meilcli.hkjson.IHKJson
+import org.json.JSONObject
+class Data(json:JSONObject? =null) : IHKJson by HKJson(json){
+   val testStringVal:String by string.json("test_string_val")
+   var testStringVar by string.json("test_string_var") // 型の省略
+   val testOptionalStringVal: String? by string.optional.json("test_optional_string_val")
+   var testOptionalStringVar by string.optional.json("test_optional_string_var")
+}
+</code></pre>
+
+
+<h2>
+    定義方法
+</h2>
+
+<p>
+    使用したいクラスでIHKJsonインターフェースを実装する
+    以下のようにHKJsonに処理を移譲させるとよい
+</p>
+
+<pre><code class="language-kotlin">IHKJson by HKJson()
+</code></pre>
+
+<p class="alert alert-warning">
+    <strong>注意</strong> : HKJsonに処理を移譲した場合プライマリコンストラクターにしか使えません
+</p>
+<p>
+    また、JSONObjectでオブジェクトの初期化をする場合はコンストラクターに以下のように渡す
+</p>
+
+<pre><code class="language-kotlin">// クラス名Dataの場合
+// デフォルト値nullを与えることによって引数なしにも対応できる
+class Data(json:JSONObject? =null) : IHKJson by HKJson(json)
+</code></pre>
+
+<p class="alert alert-info">
+    HKJsonコンストラクタでJSONObjectの初期化をした場合HKJson内部でJSONObjectがキャッシュされます、キャッシュされたJSONObjectをGC対象にするにはclearJsonCache()を行ってください
+</p>
+<p>
+    以下のように記述することで即時にGC対象にすることが可能です
+</p>
+
+<pre><code class="language-kotlin">class Data(json: JSONObject? = null) : IHKJson by HKJson(json) {
+   init {
+      clearJsonCache()
+   }
+}
+</code></pre>
+
+<p>
+    プロパティはval,var両方に対応、キーワードを変えるだけです
+</p>
+
+<pre><code class="language-kotlin">val testStringVal by string.json("test_string_val")
+var testStringVar by string.json("test_string_var")
+</code></pre>
+
+<p>
+    Optional型・Arrayにも対応、型名を指定する感覚でメソッドを呼び出すだけです
+</p>
+
+<pre><code class="language-kotlin">val testString: String by string.json("test_string")
+val testOptionalString: String? by string.optional.json("test_optional_string")
+val testStringArray: Array<String> by string.array.json("test_string_array")
+val testOptionalStringArray: Array<String>? by string.array.optional.json("test_optional_string_array")
+</code></pre>
+
+<h3>
+    対応クラス
+</h3>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="text-align: left">ルート</th>
+                <th style="text-align: left">.json</th>
+                <th style="text-align: left">.optional.json</th>
+                <th style="text-align: left">.array.json</th>
+                <th style="text-align: left">.array.optional.json</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: left">string</td>
+                <td style="text-align: left">String</td>
+                <td style="text-align: left">String?</td>
+                <td style="text-align: left">Array<em>&lt;</em>String<em>&gt;</em></td>
+                <td style="text-align: left">Array<em>&lt;</em>String<em>&gt;</em>?</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">boolean</td>
+                <td style="text-align: left">Boolean</td>
+                <td style="text-align: left">Boolean?</td>
+                <td style="text-align: left">BooleanArray</td>
+                <td style="text-align: left">BooleanArray?</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">int</td>
+                <td style="text-align: left">Int</td>
+                <td style="text-align: left">Int?</td>
+                <td style="text-align: left">IntArray</td>
+                <td style="text-align: left">IntArray?</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">long</td>
+                <td style="text-align: left">Long</td>
+                <td style="text-align: left">Long?</td>
+                <td style="text-align: left">LongArray</td>
+                <td style="text-align: left">LongArray?</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">double</td>
+                <td style="text-align: left">Double</td>
+                <td style="text-align: left">Double?</td>
+                <td style="text-align: left">DoubleArray</td>
+                <td style="text-align: left">DoubleArray?</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">date</td>
+                <td style="text-align: left">Date</td>
+                <td style="text-align: left">Date?</td>
+                <td style="text-align: left">Array<em>&lt;</em>Date<em>&gt;</em></td>
+                <td style="text-align: left">Array<em>&lt;</em>Date<em>&gt;</em>?</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">hkjson</td>
+                <td style="text-align: left">T : IJson</td>
+                <td style="text-align: left">T? : IJson</td>
+                <td style="text-align: left">Array<em>&lt;</em>T : IJson<em>&gt;</em></td>
+                <td style="text-align: left">Array<em>&lt;</em>T : IJson<em>&gt;</em>?</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p>
+    対応クラス以外は下記のメソッドを使用する
+</p>
+
+<pre><code class="language-kotlin">hkjson.custom.json
+hkjson.custom.optional.json
+</code></pre>
+
+<p>
+    またCompanion ObjectでIJsonObjectインターフェース、IJsonArrayインターフェースを継承する方法もある
+    継承した場合以下のように対応クラスと同様なメソッドになります
+</p>
+<pre><code class="language-kotlin">&lt;T : IHKJson&gt; IJsonObject&lt;T&gt;.json
+&lt;T : IHKJson&gt; IJsonObject&lt;T&gt;.optional.json
+&lt;T : IHKJson&gt; IJsonArray&lt;T&gt;.array.json
+&lt;T : IHKJson&gt; IJsonArray&lt;T&gt;.array.optional.json
+</code></pre>
+
+<h2>
+    JSONObjectで初期化する場合
+</h2>
+
+<pre><code class="language-kotlin">IHKJson.parseJson
+</code></pre>
+
+<h2>
+    JSONObjectを取得する場合
+</h2>
+
+<pre><code class="language-kotlin">IHKJson.makeJson
+</code></pre>
+
+<h2>
+    IHJKsonに委譲しているすべてのプロパティが使用可能(非nullable型に値がある)かを確認する場合
+</h2>
+
+<pre><code class="language-kotlin">IHKJson.isValid
+</code></pre>
+
+<h2>
+    非nullable型にデフォルト値を持たせる場合
+</h2>
+
+<p>
+    .jsonと.array.jsonにはデフォルト値を持たせるオーバーロードがあります、デフォルト値を引数に追加してください
+</p>
+
+<h2>
+    型名を指定するのを短くする場合
+</h2>
+
+<pre><code class="language-kotlin">StringJson.json
+StringOptionnalJson.json
+StringArrayJson.json
+StringArrayOptionalJson.json
+</code></pre>
+
+<p>
+    のようにクラスを指定します
+    クラス命名規則は[対象クラス](Array)(Optional)Jsonとなっています
+</p>
+
+<h1>
+    ライセンス
+</h1>
+
+<p>
+    このライブラリは<a href="https://github.com/MeilCli/HKJson/blob/master/LICENSE">The MIT License</a>で公開しています
+    <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>の<a href="https://github.com/JetBrains/kotlin/tree/master/libraries/stdlib">The Kotlin Standard Library</a>を使用しています
+</p>

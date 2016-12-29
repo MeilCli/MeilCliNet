@@ -1,0 +1,136 @@
+﻿#n Wyam.Markdown -p
+#n Wyam.Razor -p
+#n Wyam.Yaml -p
+#n Wyam.Html -p
+#n Wyam.Less -p
+#n Wyam.Minification -p
+
+FileSystem.InputPaths.Add("Site/Views");
+
+GlobalMetadata["SiteUrl"] = "http://meilcli.net";
+GlobalMetadata["Title"] = "滅入るんるん";
+GlobalMetadata["Description"] = "プログラミング関係のことをまとめておくとこ";
+GlobalMetadata["TwitterCardOwner"] = "@meil_mitu";
+GlobalMetadata["DisqusName"] = "meilcli";
+GlobalMetadata["Copyright"] = "The contents of <a href=\"/Project/MeilcliGithubIo/\">this website</a> are &copy; 2016 meil under the terms of <a href=\"https://github.com/MeilCli/meilcli.github.io/blob/master/LICENSE\">the MIT License</a>";
+
+	public static class DateHelper {
+
+        public static DateTime FromFileName(string fileName) {
+            string[] ar = fileName.Split('-');
+            if(ar.Length < 4) {
+                return DateTime.MinValue;
+            }
+            int year;
+            int month;
+            int day;
+            if(int.TryParse(ar[0],out year) && int.TryParse(ar[1],out month) && int.TryParse(ar[2],out day)) {
+                return new DateTime(year,month,day);
+            }
+            return DateTime.MinValue;
+        }
+    }
+
+Pipelines.Add("Archives",
+    ReadFiles("Archive/{!_,}*.cshtml"),
+	FrontMatter(Yaml()),
+	Concat(
+		ReadFiles("Archive/*.md"),
+		FrontMatter(Yaml()),
+		Markdown()
+	),
+	Meta("Date",DateHelper.FromFileName(@doc.Source.FileNameWithoutExtension.ToString())),
+	Excerpt().WithOuterHtml(false),
+	If(
+		(doc,ctx) => doc.String("Excerpt",null) != null,
+		Meta("Excerpt",System.Text.RegularExpressions.Regex.Replace(@doc.String("Excerpt"), "<.*?>", string.Empty))
+	),
+	Razor(),
+	WriteFiles((doc,ctx) => $"Archive/{doc.Source.FileNameWithoutExtension.ToString().Replace("-","/")}/index.html")
+);
+
+Pipelines.Add("Projects",
+    ReadFiles("Project/{!_,}*.cshtml"),
+	FrontMatter(Yaml()),
+	Concat(
+		ReadFiles("Project/*.md"),
+		FrontMatter(Yaml()),
+		Markdown()
+	),
+	Excerpt().WithOuterHtml(false),
+	If(
+		(doc,ctx) => doc.String("Excerpt",null) != null,
+		Meta("Excerpt",System.Text.RegularExpressions.Regex.Replace(@doc.String("Excerpt"), "<.*?>", string.Empty))
+	),
+	Razor(),
+	WriteFiles((doc,ctx) => $"Project/{doc.Source.FileNameWithoutExtension}/index.html")
+);
+
+Pipelines.Add("Tags",
+	Execute(@ctx.Documents
+		.WhereContainsKey("Tags")
+		.SelectMany(x => x.Get<IEnumerable<string>>("Tags"))
+		.Distinct()
+		.Select(x => @ctx.GetDocument("",new Dictionary<string, object>()
+			{
+				{ "Title", $"{x} Tag" },
+				{ "Description", $"{x}タグに関するページを表示します" },
+				{ "Tag", x},
+				{ "TagPages", @ctx.Documents.WhereContainsKey("Tags").Where(y => y.Get<IEnumerable<string>>("Tags").Contains(x)) }
+			})
+		)
+	),
+	Razor().WithViewStart(new FilePath("/Tag/_ViewStart.cshtml")),
+	WriteFiles((doc,ctx) => $"Tag/{doc.String("Tag",string.Empty).Replace("#","Sharp")}/index.html")
+);
+
+Pipelines.Add("Pages",
+	ReadFiles("Page/{!_,}*.cshtml"),
+	Where((doc,ctx) => doc.Source.FileNameWithoutExtension.ToString() != "Archive"),
+	FrontMatter(Yaml()),
+	Razor(),
+	WriteFiles((doc,ctx) => $"{doc.Source.FileNameWithoutExtension}/index.html")
+);
+
+Pipelines.Add("Archive",
+	ReadFiles("Page/Archive.cshtml"),
+	Paginate(5,
+		Documents("Archives"),
+		OrderBy((doc, ctx) => doc["Date"]).Descending().ThenBy((doc,ctx) => doc.String("Title",string.Empty))	
+	),
+	FrontMatter(Yaml()),
+	Razor(),
+	WriteFiles((doc,ctx) => "Archive/index"+(doc.Get<int>("CurrentPage") == 1 ? "" : ("-"+doc.Get<int>("CurrentPage")))+".html")
+);
+
+Pipelines.Add("Index",
+	ReadFiles("Index.cshtml"),
+	FrontMatter(Yaml()),
+	Razor(),
+	WriteFiles((doc,ctx) => new FilePath("index.html"))
+);
+
+Pipelines.Add("Asset",
+	CopyFiles("Asset/**/*")
+);
+
+Pipelines.Add("Less",
+    ReadFiles("Asset/Less/*.less"),
+    Less(),
+	MinifyCss(),
+    WriteFiles((doc,ctx) => $"Asset/Css/{doc.Source.FileNameWithoutExtension}.css")
+);
+
+Pipelines.Add("Root",
+    ReadFiles("README.md"),
+	Concat(
+		ReadFiles("LICENSE")
+	),
+	Concat(
+		ReadFiles("CNAME")
+	),
+	Concat(
+		ReadFiles(".nojekyll")
+	),
+    WriteFiles()
+);

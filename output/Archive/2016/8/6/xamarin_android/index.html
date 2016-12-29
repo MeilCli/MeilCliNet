@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xamarin.Androidでのアプリ開発の下準備</title>
+
+<meta name="description" content="久しぶりの更新になりますがやっとツイクラ開発に取り組めるようになってきたのでノウハウ的なのをメモっておきます">
+<meta property="og:description" content="久しぶりの更新になりますがやっとツイクラ開発に取り組めるようになってきたのでノウハウ的なのをメモっておきます" />
+<meta property="og:title" content="Xamarin.Androidでのアプリ開発の下準備" />
+<meta name="author" content="滅入るんるん" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@meil_mitu">
+<meta name="twitter:title" content="Xamarin.Androidでのアプリ開発の下準備">
+<meta name="twitter:description" content="久しぶりの更新になりますがやっとツイクラ開発に取り組めるようになってきたのでノウハウ的なのをメモっておきます">
+<meta name="twitter:image:src" content="http://meilcli.net/Asset/Image/favicon/android-icon-192x192.png">
+
+<link rel="apple-touch-icon" sizes="57x57" href="/Asset/Image/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/Asset/Image/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/Asset/Image/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/Asset/Image/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/Asset/Image/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/Asset/Image/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/Asset/Image/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/Asset/Image/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Asset/Image/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/Asset/Image/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/Asset/Image/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/Asset/Image/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Asset/Image/favicon/favicon-16x16.png">
+<link rel="manifest" href="/Asset/Image/favicon/manifest.json">
+<meta name="msapplication-TileImage" content="/Asset/Image/favicon/ms-icon-144x144.png">
+
+<link rel="stylesheet" href="/Asset/Css/bootstrap.min.css">
+<link rel="stylesheet" href="/Asset/Css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/Asset/Css/vs.css">
+<link rel="stylesheet" href="/Asset/Css/main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/6c0013e839.css">
+
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="/Asset/Js/jquery-1.12.2.min.js"></script>
+<script src="/Asset/Js/bootstrap.min.js"></script>
+
+
+    
+</head>
+<body>
+
+    <header class="header">
+        <nav class="menu navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">メニュー</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">
+            <span><img src="/Asset/Image/favicon/android-icon-192x192.png" style="height: 20px;" /></span>
+            滅入るんるん
+        </a>
+    </div>
+    <div id="gnavi" class="collapse navbar-collapse">
+        <p class="navbar-text">
+            プログラミング関係のことをまとめておくとこ
+        </p>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/Archive">Archive</a></li>
+            <li><a href="/Tag">Tag</a></li>
+            <li><a href="/Project">Project</a></li>
+            <li><a href="/About">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+        
+    </header>
+    <div class="container">
+        <ol class="breadcrumb">
+    <li><a href="/">Top</a></li>
+    <li><a href="/Archive">Archive</a></li>
+    <li class="active">Xamarin.Androidでのアプリ開発の下準備</li>
+</ol>
+<div class="page-header">
+    <p class="h1">Xamarin.Androidでのアプリ開発の下準備</p>
+    <div class="text-right">
+        <ul class="list-inline">
+            <li class="tag"><i class="fa fa-calendar" aria-hidden="true"></i></li>
+            <li class="tag">2016&#x5E74;8&#x6708;6&#x65E5;</li>
+        </ul>
+        <ul class="list-inline">
+                <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                    <li class="tag tag-text"><a href="/Tag/CSharp">C#</a></li>
+                    <li class="tag tag-text"><a href="/Tag/Xamarin">Xamarin</a></li>
+                    <li class="tag tag-text"><a href="/Tag/Android">Android</a></li>
+                                            </ul>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-size="large">ツイート</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
+
+</div>
+<p>久しぶりの更新になりますがやっとツイクラ開発に取り組めるようになってきたのでノウハウ的なのをメモっておきます</p>
+<p>Javaでもいえることもありますが主にC#環境向けになります</p>
+<h2>AppCompatActivity使用時はAppCompatのThemeを利用する</h2>
+<p>これしないと落ちます()</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;resources&gt;
+  &lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.Light.DarkActionBar&quot;&gt;
+    &lt;item name=&quot;colorPrimary&quot;&gt;&#64;color/ColorPrimary&lt;/item&gt;
+    &lt;item name=&quot;colorPrimaryDark&quot;&gt;&#64;color/ColorPrimaryDark&lt;/item&gt;
+    &lt;item name=&quot;colorAccent&quot;&gt;&#64;color/ColorAccent&lt;/item&gt;
+  &lt;/style&gt;
+  &lt;style name=&quot;AppTheme.AppBarOverlay&quot; parent=&quot;ThemeOverlay.AppCompat.Dark.ActionBar&quot;/&gt;
+  &lt;style name=&quot;AppTheme.PopupOverlay&quot; parent=&quot;ThemeOverlay.AppCompat.Light&quot;/&gt;
+&lt;/resources&gt;
+</code></pre>
+<p>このような感じにしといてあげましょう</p>
+<h2>Could not connect to the Debugger</h2>
+<p>このような感じのエラーが出てデバックできなければHyper-Vの設定を変えてやると直ることがあります</p>
+<pre><code class="language-nohighlight">設定 =&gt; プロセッサ =&gt; 互換性 =&gt; プロセッサバージョンが異なる物理コンピューターへ移行する　をオンに
+</code></pre>
+<h2>独自Applicationクラスを利用する</h2>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+
+
+namespace Test {
+    [Application(Icon = &quot;&#64;drawable/icon&quot;,Label =&quot;Test&quot;,Theme = &quot;&#64;style/AppTheme&quot;)]
+    public class TestApplication :Application{
+
+        public TestApplication(IntPtr javaReference,JniHandleOwnership transfer) : base(javaReference,transfer) {
+        }
+
+        public override void OnCreate() {
+            base.OnCreate();
+
+        }
+    }
+}
+</code></pre>
+<p>重要なのはApplication属性をつけることとコンストラクタを明示的に書き足すことです</p>
+<p>ついでのITestApplicationインタフェースを作って実装するとクロスプラットフォーム開発的にはいいかもしれないです</p>
+<h2>ライフサイクルをEventHandlerで揃える</h2>
+<p>ActivityとFragmentでライフサイクルに微妙な差がありますが基底クラスで揃えるといいかもしれません(まだ自分でも試してる段階です)</p>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+
+namespace Test {
+
+    public delegate void LifeCycleEvent(LifeCycleEventArgs args);
+
+    public class LifeCycleEventArgs {
+
+        public string EventName { get; }
+
+        public Bundle State { get; }
+
+        public Intent Intent { get; }
+
+        public LifeCycleEventArgs(string eventName,Bundle state = null,Intent intent = null) {
+            EventName = eventName;
+            State = state;
+        }
+    }
+
+    public interface ILifeCycle {
+
+        event LifeCycleEvent OnCreateEventHandler;
+
+        event LifeCycleEvent OnDestoryEventHandler;
+
+        event LifeCycleEvent OnResumeEventHandler;
+
+        event LifeCycleEvent OnPauseEventHandler;
+
+        event LifeCycleEvent OnSaveInstanceStateEventHandler;
+
+        event LifeCycleEvent OnRestoreInstanceStateEventHandler;
+
+        event LifeCycleEvent OnNewIntentEventHandler;
+    }
+}
+</code></pre>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Android.Support.V7.App;
+using Twichirp.Core.App;
+using SFragment = Android.Support.V4.App.Fragment;
+
+namespace Test {
+
+    public abstract class BaseActivity : AppCompatActivity ,ILifeCycle{ 
+
+        public event LifeCycleEvent OnCreateEventHandler;
+        public event LifeCycleEvent OnDestoryEventHandler;
+        public event LifeCycleEvent OnPauseEventHandler;
+        public event LifeCycleEvent OnRestoreInstanceStateEventHandler;
+        public event LifeCycleEvent OnResumeEventHandler;
+        public event LifeCycleEvent OnSaveInstanceStateEventHandler;
+        public event LifeCycleEvent OnNewIntentEventHandler;
+
+        protected override void OnCreate(Bundle savedInstanceState) {
+            base.OnCreate(savedInstanceState);
+            OnViewCreate(savedInstanceState);
+            OnCreateEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnCreate),savedInstanceState));
+            if(savedInstanceState != null) {
+                OnRestoreInstanceStateEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnCreate),savedInstanceState));
+            }
+        }
+
+        protected abstract void OnViewCreate(Bundle savedInstanceState);
+
+        protected override void OnDestroy() {
+            base.OnDestroy();
+            OnDestoryEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnDestroy)));
+        }
+
+        protected override void OnResume() {
+            base.OnResume();
+            OnResumeEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnResume)));
+        }
+
+        protected override void OnPause() {
+            base.OnPause();
+            OnPauseEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnPause)));
+        }
+
+        protected override void OnSaveInstanceState(Bundle outState) {
+            base.OnSaveInstanceState(outState);
+            OnSaveInstanceStateEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnSaveInstanceState),outState));
+        }
+
+        protected override void OnNewIntent(Intent intent) {
+            base.OnNewIntent(intent);
+            OnNewIntentEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnNewIntent),intent: intent));
+            foreach(SFragment fragment in SupportFragmentManager.Fragments) {
+                if(fragment is BaseFragment) {
+                    (fragment as BaseFragment).OnNewIntent(intent);
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Support.V7.App;
+using Android.Util;
+using Android.Views;
+using Android.Widget;
+using SFragment = Android.Support.V4.App.Fragment;
+
+namespace Test{
+    public abstract class BaseFragment : SFragment ,ILifeCycle{
+        
+        public event LifeCycleEvent OnCreateEventHandler;
+        public event LifeCycleEvent OnDestoryEventHandler;
+        public event LifeCycleEvent OnPauseEventHandler;
+        public event LifeCycleEvent OnRestoreInstanceStateEventHandler;
+        public event LifeCycleEvent OnResumeEventHandler;
+        public event LifeCycleEvent OnSaveInstanceStateEventHandler;
+        public event LifeCycleEvent OnNewIntentEventHandler;
+
+        public override void OnActivityCreated(Bundle savedInstanceState) {
+            base.OnActivityCreated(savedInstanceState);
+            OnCreateEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnActivityCreated),savedInstanceState));
+            if(savedInstanceState != null) {
+                OnRestoreInstanceStateEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnActivityCreated),savedInstanceState));
+            }
+        }
+
+        public override void OnDestroy() {
+            base.OnDestroy();
+            OnDestoryEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnDestroy)));
+        }
+
+        public override void OnResume() {
+            base.OnResume();
+            OnResumeEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnResume)));
+        }
+
+        public override void OnPause() {
+            base.OnPause();
+            OnPauseEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnPause)));
+        }
+
+        public override void OnSaveInstanceState(Bundle outState) {
+            base.OnSaveInstanceState(outState);
+            OnSaveInstanceStateEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnSaveInstanceState),outState));
+        }
+
+        public void OnNewIntent(Intent intent) {
+            OnNewIntentEventHandler?.Invoke(new LifeCycleEventArgs(nameof(OnNewIntent),intent: intent));
+        }
+
+    }
+}
+</code></pre>
+<p>このようにしてControllerクラス的なのからILifeCycleに対してイベント処理を登録すればActivity/Fragment両方で統一した動作をさせることが楽にできると思います(統一させる必要があることも少ないでしょうが)</p>
+
+
+<div id="disqus_thread"></div>
+<script>
+    (function() {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//meilcli'+'.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+    <hr />
+    <footer class="footer">
+        <div class="container">
+    <ul class="list-inline text-center">
+        <li>
+            <a href="https://twitter.com/meil_mitu" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/meilcli" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="https://play.google.com/store/apps/developer?id=meil&hl=ja" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-android fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    </ul>
+    <p class="text-center text-muted">
+        The contents of <a href="/Project/MeilcliGithubIo/">this website</a> are &copy; 2016 meil under the terms of <a href="https://github.com/MeilCli/meilcli.github.io/blob/master/LICENSE">the MIT License</a>
+        <br />
+        <a href="https://github.com/MeilCli/meilcli.github.io">This Web Site on Github</a>
+        |
+        <a href="http://wyam.io/">Generated by Wyam</a>
+        |
+        <a href="https://github.com/">Hosted by Github</a>
+    </p>
+</div>
+
+        
+    </footer>
+    <script src="/Asset/Js/highlight.pack.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "../Shared/_Layout";
+}
+@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var globalMetadata = context.GlobalMetadata;
+    var metadata = Model.Metadata;
+}
+<ol class="breadcrumb">
+    <li><a href="/">Top</a></li>
+    <li><a href="/Archive">Archive</a></li>
+    <li class="active">@Html.Raw(Model.String("Title",string.Empty))</li>
+</ol>
+<div class="page-header">
+    <p class="h1">@Html.Raw(Model.String("Title",string.Empty))</p>
+    <div class="text-right">
+        <ul class="list-inline">
+            <li class="tag"><i class="fa fa-calendar" aria-hidden="true"></i></li>
+            @{ 
+                DateTime date = Model.Get("Date",DateTime.MinValue);
+                string dateText = $"{date.Year}年{date.Month}月{date.Day}日";
+            }
+            <li class="tag">@dateText</li>
+        </ul>
+        <ul class="list-inline">
+            @if(Model.Get("Tags",null) != null) {
+                <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                foreach(var tag in Model.Get("Tags",Enumerable.Empty<string>())) {
+                    <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                }
+            }
+            @if(Model.Get("IsLibrary",false)) {
+                <li class="tag"><span class="label label-info">Library</span></li>
+            }
+            @if(Model.Get("IsApplication",false)) {
+                <li class="tag"><span class="label label-warning">Application</span></li>
+            }
+            @if(Model.Get("IsWebSite",false)) {
+                <li class="tag"><span class="label label-success">WebSite</span></li>
+            }
+        </ul>
+        @{
+            var linkList = new List<Tuple<string,string>>();
+            if(Model.String("LinkGithub",null) != null) {
+                linkList.Add(Tuple.Create("Github",Model.String("LinkGithub")));
+            }
+            if(Model.String("LinkBintray",null) != null) {
+                linkList.Add(Tuple.Create("Bintray",Model.String("LinkBintray")));
+            }
+            if(Model.String("LinkQiita",null) != null) {
+                linkList.Add(Tuple.Create("Qiita",Model.String("LinkQiita")));
+            }
+            if(Model.String("LinkGooglePlay",null) != null) {
+                linkList.Add(Tuple.Create("GooglePlay",Model.String("LinkGooglePlay")));
+            }
+        }
+        @for(int i = 0;i < linkList.Count;i++) {
+                if(i != 0) {
+                <span>|</span>
+            }
+            <a href="@linkList[i].Item2">View on @linkList[i].Item1</a>
+        }
+        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-size="large">ツイート</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
+
+</div>
+@RenderBody()
+
+<div id="disqus_thread"></div>
+<script>
+    (function() {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//@globalMetadata.String("DisqusName",string.Empty)'+'.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>

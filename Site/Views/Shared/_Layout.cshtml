@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("_Head")
+    @RenderSection("head",required: false)
+</head>
+<body>
+
+    <header class="header">
+        @Html.Partial("_Header")
+        @RenderSection("header",required: false)
+    </header>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer class="footer">
+        @Html.Partial("_Footer")
+        @RenderSection("footer",required: false)
+    </footer>
+    <script src="/Asset/Js/highlight.pack.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    @RenderSection("footer_script",required: false)
+</body>
+</html>

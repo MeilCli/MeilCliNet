@@ -1,0 +1,131 @@
+﻿@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var globalMetadata = context.GlobalMetadata;
+    var metadata = Model.Metadata;
+}
+<div class="page-header">
+    <h1>
+        Recommend Project
+    </h1>
+</div>
+@{
+    int count = 0;
+}
+@foreach(var page in context.Documents.WhereContainsKey("IsRecommended").Where(x => x.Get("IsRecommended",false)).OrderBy(x => x.Source.FileNameWithoutExtension)) {
+    if(count > 0) {
+        <hr />
+    }
+    count++;
+    <h2 class="h2">
+        <a href="/Project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
+    </h2>
+    <p>@Html.Raw(page.String("Description",string.Empty))</p>
+    <div class="text-right">
+        <ul class="list-inline">
+            @if(page.Get("Tags",null) != null) {
+                <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
+                    <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                }
+            }
+            @if(page.Get("IsLibrary",false)) {
+                <li class="tag"><span class="label label-info">Library</span></li>
+            }
+            @if(page.Get("IsApplication",false)) {
+                <li class="tag"><span class="label label-warning">Application</span></li>
+            }
+            @if(page.Get("IsWebSite",false)) {
+                <li class="tag"><span class="label label-success">WebSite</span></li>
+            }
+        </ul>
+    </div>
+}
+
+<div class="text-center">
+    <a href="/Project" class="btn btn-default" role="button">MORE PROJECT</a>
+</div>
+
+<div class="page-header">
+    <h1>
+        Current Archive
+    </h1>
+</div>
+@{
+    count = 0;
+}
+@foreach(var page in context.Documents.FromPipeline("Archives").OrderByDescending(x => x.Get("Date",DateTime.MinValue)).ThenBy(x => x.String("Title",string.Empty)).Take(3)) {
+    if(count > 0) {
+        <hr />
+    }
+    count++;
+    <h2 class="h2">
+        <a href="@context.GetLink(page).Replace("/index","")">@Html.Raw(page.String("Title",string.Empty))</a>
+    </h2>
+    string description = page.String("Description",null) ?? page.String("Excerpt",null) ?? globalMetadata.String("Description",string.Empty);
+    <p>@Html.Raw(description)</p>
+    if(page.String("Image",null) != null) {
+        <p class="thumbnail"><img src="/Asset/Image/@page.String("Image")" alt="image" /></p>
+    }
+    <div class="text-right">
+        @if(page.ContainsKey("Date")) {
+            <ul class="list-inline">
+                <li class="tag"><i class="fa fa-calendar" aria-hidden="true"></i></li>
+                @{
+                    DateTime date = page.Get("Date",DateTime.MinValue);
+                    string dateText = $"{date.Year}年{date.Month}月{date.Day}日";
+                }
+                <li class="tag">@dateText</li>
+            </ul>
+                    }
+        <ul class="list-inline">
+            @if(page.Get("Tags",null) != null) {
+                <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
+                    <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                }
+            }
+            @if(page.Get("IsLibrary",false)) {
+                <li class="tag"><span class="label label-info">Library</span></li>
+            }
+            @if(page.Get("IsApplication",false)) {
+                <li class="tag"><span class="label label-warning">Application</span></li>
+            }
+            @if(page.Get("IsWebSite",false)) {
+                <li class="tag"><span class="label label-success">WebSite</span></li>
+            }
+        </ul>
+    </div>
+                    }
+
+<div class="text-center">
+    <a href="/Archive" class="btn btn-default" role="button">MORE ARCHIVE</a>
+</div>
+
+<div class="page-header">
+    <h1>
+        Famous Tag
+    </h1>
+</div>
+
+<ul class="list-inline">
+    <li class="tag-big"><i class="fa fa-tags" aria-hidden="true"></i></li>
+    @{ 
+        var tags = context.Documents
+            .FromPipeline("Tags")
+            .OrderByDescending(x => x.Get("TagPages",Enumerable.Empty<IDocument>()).Count())
+            .ThenBy(x => x.String("Title",string.Empty))
+            .Take(7);
+    }
+    @foreach(var page in tags) {
+        string tag = page.String("Tag",string.Empty);
+        var tagPages = page.Get("TagPages",Enumerable.Empty<IDocument>());
+        <li class="tag-big tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw($"{tag}({tagPages.Count()})")</a></li>
+    }
+</ul>
+
+<div class="text-center">
+    <a href="/Tag" class="btn btn-default" role="button">MORE TAG</a>
+</div>

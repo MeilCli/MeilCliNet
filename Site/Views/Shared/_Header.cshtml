@@ -1,0 +1,34 @@
+﻿@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var globalMetadata = context.GlobalMetadata;
+    var metadata = Model.Metadata;
+}
+<nav class="menu navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">メニュー</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">
+            <span><img src="/Asset/Image/favicon/android-icon-192x192.png" style="height: 20px;" /></span>
+            @Html.Raw(globalMetadata.String("Title",string.Empty))
+        </a>
+    </div>
+    <div id="gnavi" class="collapse navbar-collapse">
+        <p class="navbar-text">
+            @Html.Raw(globalMetadata.String("Description",string.Empty))
+        </p>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/Archive">Archive</a></li>
+            <li><a href="/Tag">Tag</a></li>
+            <li><a href="/Project">Project</a></li>
+            <li><a href="/About">About</a></li>
+        </ul>
+    </div>
+</nav>

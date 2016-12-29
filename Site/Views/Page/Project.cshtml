@@ -1,0 +1,82 @@
+﻿---
+Title: Project
+---
+@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var globalMetadata = context.GlobalMetadata;
+    var metadata = Model.Metadata;
+}
+<div class="row">
+    <div class="col-xs-12">
+        @{
+            int count = 0;
+        }
+        @foreach(var page in context.Documents.FromPipeline("Projects").Where(x => x.Get("IsProduct",false)).OrderBy(x => x.Source.FileNameWithoutExtension)) {
+            if(count > 0) {
+                <hr />
+            }
+            count++;
+            <h2 class="h2">
+                <a href="/Project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
+            </h2>
+            <p>@Html.Raw(page.String("Description",string.Empty))</p>
+            <div class="text-right">
+                <ul class="list-inline">
+                    @if(page.Get("Tags",null) != null) {
+                        <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                        foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
+                            <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                        }
+                    }
+                    @if(page.Get("IsLibrary",false)) {
+                        <li class="tag"><span class="label label-info">Library</span></li>
+                    }
+                    @if(page.Get("IsApplication",false)) {
+                        <li class="tag"><span class="label label-warning">Application</span></li>
+                    }
+                    @if(page.Get("IsWebSite",false)) {
+                        <li class="tag"><span class="label label-success">WebSite</span></li>
+                    }
+                </ul>
+            </div>
+        }
+        <div class="page-header">
+            <p class="h1">Old Project</p>
+        </div>
+        @{
+            count = 0;
+        }
+        @foreach(var page in context.Documents.FromPipeline("Projects").Where(x => x.Get("IsOldProduct",false)).OrderBy(x => x.Source.FileNameWithoutExtension)) {
+            if(count > 0) {
+                <hr />
+            }
+            count++;
+            <h2 class="h2">
+                <a href="/Project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
+            </h2>
+            <p>@Html.Raw(page.String("Description",string.Empty))</p>
+            <div class="text-right">
+                <ul class="list-inline">
+                    @if(page.Get("Tags",null) != null) {
+                        <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                        foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
+                            <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag))">@Html.Raw(tag)</a></li>
+                        }
+                    }
+                    @if(page.Get("IsLibrary",false)) {
+                        <li class="tag"><span class="label label-info">Library</span></li>
+                    }
+                    @if(page.Get("IsApplication",false)) {
+                        <li class="tag"><span class="label label-warning">Application</span></li>
+                    }
+                    @if(page.Get("IsWebSite",false)) {
+                        <li class="tag"><span class="label label-success">WebSite</span></li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>

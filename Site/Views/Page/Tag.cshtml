@@ -1,0 +1,20 @@
+﻿---
+Title: Tag
+---
+@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var globalMetadata = context.GlobalMetadata;
+    var metadata = Model.Metadata;
+}
+
+<ul class="list-inline">
+    <li class="tag-big"><i class="fa fa-tags" aria-hidden="true"></i></li>
+    @foreach(var page in context.Documents.FromPipeline("Tags").OrderBy(x => x.String("Tag",string.Empty))) {
+        string tag = page.String("Tag",string.Empty);
+        var tagPages = page.Get("TagPages",Enumerable.Empty<IDocument>());
+        <li class="tag-big tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw($"{tag}({tagPages.Count()})")</a></li>
+    }
+</ul>
