@@ -20,7 +20,7 @@
     }
     count++;
     <h2 class="h2">
-        <a href="/project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
+        <a href="@context.GetLink(page).Replace("/index","")">@Html.Raw(page.String("Title",string.Empty))</a>
     </h2>
     <p>@Html.Raw(page.String("Description",string.Empty))</p>
     <div class="text-right">
