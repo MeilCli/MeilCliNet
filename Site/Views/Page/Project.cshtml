@@ -20,7 +20,7 @@ Title: Project
             }
             count++;
             <h2 class="h2">
-                <a href="/Project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
+                <a href="/project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
             </h2>
             <p>@Html.Raw(page.String("Description",string.Empty))</p>
             <div class="text-right">
@@ -28,7 +28,7 @@ Title: Project
                     @if(page.Get("Tags",null) != null) {
                         <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
                         foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
-                            <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                            <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                         }
                     }
                     @if(page.Get("IsLibrary",false)) {
@@ -55,7 +55,7 @@ Title: Project
             }
             count++;
             <h2 class="h2">
-                <a href="/Project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
+                <a href="/project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
             </h2>
             <p>@Html.Raw(page.String("Description",string.Empty))</p>
             <div class="text-right">
@@ -63,7 +63,7 @@ Title: Project
                     @if(page.Get("Tags",null) != null) {
                         <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
                         foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
-                            <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag))">@Html.Raw(tag)</a></li>
+                            <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                         }
                     }
                     @if(page.Get("IsLibrary",false)) {

@@ -7,12 +7,12 @@
 
 FileSystem.InputPaths.Add("Site/Views");
 
-GlobalMetadata["SiteUrl"] = "http://meilcli.net";
+GlobalMetadata["SiteUrl"] = "https://meilcli.net";
 GlobalMetadata["Title"] = "滅入るんるん";
 GlobalMetadata["Description"] = "プログラミング関係のことをまとめておくとこ";
 GlobalMetadata["TwitterCardOwner"] = "@meil_mitu";
 GlobalMetadata["DisqusName"] = "meilcli";
-GlobalMetadata["Copyright"] = "The contents of <a href=\"/Project/MeilcliGithubIo/\">this website</a> are &copy; 2016 meil under the terms of <a href=\"https://github.com/MeilCli/meilcli.github.io/blob/master/LICENSE\">the MIT License</a>";
+GlobalMetadata["Copyright"] = "The contents of <a href=\"/project/meilcligithubio/\">this website</a> are &copy; 2016 meil under the terms of <a href=\"https://github.com/MeilCli/meilcli.github.io/blob/master/LICENSE\">the MIT License</a>";
 
 	public static class DateHelper {
 
@@ -46,7 +46,7 @@ Pipelines.Add("Archives",
 		Meta("Excerpt",System.Text.RegularExpressions.Regex.Replace(@doc.String("Excerpt"), "<.*?>", string.Empty))
 	),
 	Razor(),
-	WriteFiles((doc,ctx) => $"Archive/{doc.Source.FileNameWithoutExtension.ToString().Replace("-","/")}/index.html")
+	WriteFiles((doc,ctx) => $"Archive/{doc.Source.FileNameWithoutExtension.ToString().Replace("-","/")}/index.html".ToLower())	
 );
 
 Pipelines.Add("Projects",
@@ -63,7 +63,7 @@ Pipelines.Add("Projects",
 		Meta("Excerpt",System.Text.RegularExpressions.Regex.Replace(@doc.String("Excerpt"), "<.*?>", string.Empty))
 	),
 	Razor(),
-	WriteFiles((doc,ctx) => $"Project/{doc.Source.FileNameWithoutExtension}/index.html")
+	WriteFiles((doc,ctx) => $"Project/{doc.Source.FileNameWithoutExtension}/index.html".ToLower())
 );
 
 Pipelines.Add("Tags",
@@ -81,7 +81,7 @@ Pipelines.Add("Tags",
 		)
 	),
 	Razor().WithViewStart(new FilePath("/Tag/_ViewStart.cshtml")),
-	WriteFiles((doc,ctx) => $"Tag/{doc.String("Tag",string.Empty).Replace("#","Sharp")}/index.html")
+	WriteFiles((doc,ctx) => $"Tag/{doc.String("Tag",string.Empty).Replace("#","Sharp")}/index.html".ToLower())
 );
 
 Pipelines.Add("Pages",
@@ -89,7 +89,7 @@ Pipelines.Add("Pages",
 	Where((doc,ctx) => doc.Source.FileNameWithoutExtension.ToString() != "Archive"),
 	FrontMatter(Yaml()),
 	Razor(),
-	WriteFiles((doc,ctx) => $"{doc.Source.FileNameWithoutExtension}/index.html")
+	WriteFiles((doc,ctx) => $"{doc.Source.FileNameWithoutExtension}/index.html".ToLower())
 );
 
 Pipelines.Add("Archive",
@@ -100,7 +100,7 @@ Pipelines.Add("Archive",
 	),
 	FrontMatter(Yaml()),
 	Razor(),
-	WriteFiles((doc,ctx) => "Archive/index"+(doc.Get<int>("CurrentPage") == 1 ? "" : ("-"+doc.Get<int>("CurrentPage")))+".html")
+	WriteFiles((doc,ctx) => "Archive/index"+(doc.Get<int>("CurrentPage") == 1 ? "" : ("-"+doc.Get<int>("CurrentPage")))+".html".ToLower())
 );
 
 Pipelines.Add("Index",

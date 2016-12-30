@@ -20,7 +20,7 @@
     }
     count++;
     <h2 class="h2">
-        <a href="/Project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
+        <a href="/project/@page.Source.FileNameWithoutExtension/">@Html.Raw(page.String("Title",string.Empty))</a>
     </h2>
     <p>@Html.Raw(page.String("Description",string.Empty))</p>
     <div class="text-right">
@@ -28,7 +28,7 @@
             @if(page.Get("Tags",null) != null) {
                 <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
                 foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
-                    <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                    <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                 }
             }
             @if(page.Get("IsLibrary",false)) {
@@ -45,7 +45,7 @@
 }
 
 <div class="text-center">
-    <a href="/Project" class="btn btn-default" role="button">MORE PROJECT</a>
+    <a href="/project" class="btn btn-default" role="button">MORE PROJECT</a>
 </div>
 
 <div class="page-header">
@@ -74,7 +74,7 @@
             @if(page.Get("Tags",null) != null) {
                 <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
                 foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
-                    <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                    <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                 }
             }
             @if(page.Get("IsLibrary",false)) {
@@ -90,7 +90,7 @@
                 DateTime date = page.Get("Date",DateTime.MinValue);
                 string dateText = $"{date.Year}年{date.Month}月{date.Day}日";
                 <li class="tag"><i class="fa fa-calendar" aria-hidden="true"></i></li>
-                <li class="tag">@dateText</li>
+                <li class="tag">@Html.Raw(dateText)</li>
             }
         </ul>
 
@@ -98,7 +98,7 @@
 }
 
 <div class="text-center">
-    <a href="/Archive" class="btn btn-default" role="button">MORE ARCHIVE</a>
+    <a href="/archive" class="btn btn-default" role="button">MORE ARCHIVE</a>
 </div>
 
 <div class="page-header">
@@ -124,5 +124,5 @@
 </ul>
 
 <div class="text-center">
-    <a href="/Tag" class="btn btn-default" role="button">MORE TAG</a>
+    <a href="/tag" class="btn btn-default" role="button">MORE TAG</a>
 </div>

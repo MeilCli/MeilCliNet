@@ -12,7 +12,7 @@
 
 <ol class="breadcrumb">
     <li><a href="/">Top</a></li>
-    <li><a href="/Tag">Tag</a></li>
+    <li><a href="/tag">Tag</a></li>
     <li class="active">@Html.Raw(Model.String("Title",string.Empty))</li>
 </ol>
 <div class="page-header">
@@ -39,7 +39,7 @@
             @if(page.Get("Tags",null) != null) {
                 <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
                 foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
-                    <li class="tag tag-text"><a href="/Tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp")))">@Html.Raw(tag)</a></li>
+                    <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                 }
             }
             @if(page.Get("IsLibrary",false)) {
@@ -55,7 +55,7 @@
                 DateTime date = page.Get("Date",DateTime.MinValue);
                 string dateText = $"{date.Year}年{date.Month}月{date.Day}日";
                 <li class="tag"><i class="fa fa-calendar" aria-hidden="true"></i></li>
-                <li class="tag">@dateText</li>
+                <li class="tag">@Html.Raw(dateText)</li>
             }
         </ul>
 
