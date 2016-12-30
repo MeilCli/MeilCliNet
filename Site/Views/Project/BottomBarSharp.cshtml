@@ -1,0 +1,85 @@
+﻿---
+Title: BottomBarSharp
+Tags: [Xamarin, Android, C#]
+Description: オープンソースライブラリBottomBarをC#に翻訳したもの
+IsProduct: true
+IsLibrary: true
+LinkGithub: https://github.com/MeilCli/BottomBarSharp
+---
+
+<p>
+    このライブラリは<a href="https://github.com/roughike/BottomBar">BottomBar</a>をC#に翻訳したものです。<br />
+    公式のサポートライブラリに同じコンポーネントが含まれるようになったのでそちらを利用したほうがいいです。
+</p>
+
+<h2>
+    著作について
+</h2>
+
+<p>
+    <a href="https://github.com/roughike/BottomBar">BottomBar</a>は<a href="https://github.com/roughike/BottomBar/blob/master/LICENSE">Apache License 2.0</a>に基づいて配布されています。<br/>
+    Copyright (c) 2016 Iiro Krankka (<a href="http://github.com/roughike">http://github.com/roughike</a>).
+</p>
+
+<h2>
+    このライブラリについて
+</h2>
+
+<ul>
+    <li>Xamarin.Android</li>
+    <li>BottomBar 2.0.2を翻訳しています</li>
+    <li>NuGetで公開していません</li>
+    <li>使用する場合は各自ビルドする必要があります</li>
+</ul>
+
+<h2>
+    BottomBarからの変更点
+</h2>
+
+<ul>
+    <li>xmlに書く名前空間が変更されています(com.roughike.bottombar.BottomBar → bottombarsharp.BottomBar)</li>
+    <li>タブの選択・再選択のEventHandlerも用意しています</li>
+    <li>いくつかのフィールドをプロパティとして用意しました</li>
+</ul>
+
+<h2>
+    使用方法
+</h2>
+
+<ol>
+    <li>ソリューションをPCにダウンロードまたはgitでclone</li>
+    <li>Xamarinに開発環境を含んだVisual Studio 2015でこのソリューションを開く</li>
+    <li>ソリューションをビルドする</li>
+    <li>ソリューションをファイルエクスプローラーで開きbinフォルダ内にあるdllファイルを探す</li>
+    <li>使用したいプロジェクトでそのdllファイルを参照する</li>
+</ol>
+
+<h2>
+    サンプル
+</h2>
+
+<p>
+    <a href="https://github.com/MeilCli/BottomBarSharp/tree/master/BottomBarSharp.App">BottomBar.App</a>プロジェクトを見てください。
+</p>
+
+<h2>
+    トラブルシューティング
+</h2>
+
+<h3>
+    リソースが見つからない
+</h3>
+
+<p>
+    リソースIDに大文字を含めて指定している場合リソースが見つからないことがあるようです、小文字で指定してみてください。<br/>
+    例) @@drawable/IconButtonGrey24dp → @@drawable/iconbuttongrey24dp
+</p>
+
+<h2>
+    ライセンス
+</h2>
+
+<p>
+    このライブラリは<a href="https://github.com/MeilCli/BottomBarSharp/blob/master/LICENSE.txt">MIT License</a>によって配布されています
+</p>
+

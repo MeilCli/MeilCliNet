@@ -1,0 +1,82 @@
+﻿---
+Title: DetectionCore
+Tags: [.NET Core, .NET Standard Library, C#]
+Description: ユーザーエージェントからブラウザとプラットフォームを検出するライブラリ
+IsProduct: true
+IsRecommended: true
+IsLibrary: true
+LinkGithub: https://github.com/MeilCli/DetectionCore
+LinkNuGet: https://www.nuget.org/packages/DetectionCore
+---
+
+<img src="https://meilcli.visualstudio.com/_apis/public/build/definitions/aa83b402-b78d-4038-a10b-93b8509336e0/2/badge" />
+<p>
+    .NET Core(.NET Standard Library1.6)用のブラウザ検出ライブラリです
+</p>
+
+<h2>
+    検出対象
+</h2>
+
+<h3>
+    ブラウザ
+</h3>
+
+<ul>
+    <li>IE(IE8以降の各バージョン)</li>
+    <li>Edge</li>
+    <li>Chrome</li>
+    <li>Firefox</li>
+    <li>Safari</li>
+    <li>Opera</li>
+</ul>
+
+<h3>
+    プラットフォーム
+</h3>
+
+<ul>
+    <li>Windows(Windows XP以降の各コンシュマーバージョン)</li>
+    <li>MacOS(Mac OS X v10.5以降の各バージョン)</li>
+    <li>Chrome OS</li>
+    <li>Ubuntu</li>
+    <li>Mint Linux</li>
+    <li>Fedora</li>
+    <li>Gentoo</li>
+    <li>FreeBSD</li>
+    <li>OpenBSD</li>
+    <li>NetBSD</li>
+    <li>Nintendo Wii</li>
+    <li>PlayStation 2</li>
+    <li>PlayStation 3</li>
+    <li>PlayStation 4</li>
+    <li>iOS(iOS7.0以降の各バージョン)</li>
+    <li>Android(Android4.0以降の各バージョン)</li>
+</ul>
+
+<h2>
+    インストール
+</h2>
+
+<p>
+    <a href="https://www.nuget.org/packages/DetectionCore/">NuGet</a>からインストールできます
+</p>
+
+<pre><code>Install-Package DetectionCore</code></pre>
+
+<h2>
+    使用方法
+</h2>
+
+<pre><code class="language-csharp">using DetectionCore;
+string userAgent = "~~~~";
+string browser = userAgent.Browser();
+string platform = userAgent.Platform();</code></pre>
+
+<h2>
+    ライセンス
+</h2>
+
+<p>
+    このライブラリは<a href="https://github.com/MeilCli/DetectionCore/blob/master/LICENSE.txt">MIT License</a>によって配布されています
+</p>

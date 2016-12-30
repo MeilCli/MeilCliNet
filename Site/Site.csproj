@@ -199,6 +199,8 @@
     <Content Include="Views\Page\Tag.cshtml" />
     <Content Include="Views\Page\Archive.cshtml" />
     <Content Include="Views\Project\MeilCliNet.cshtml" />
+    <Content Include="Views\Project\BottomBarSharp.cshtml" />
+    <Content Include="Views\Project\DetectionCore.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

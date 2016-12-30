@@ -5,6 +5,9 @@ html {
 
 body {
     font-size: 16px;
+    letter-spacing: .04em;
+    line-height: 1.8;
+    word-break: break-all;
 
     > .container {
         padding: 20px 15px 0;
@@ -113,7 +116,7 @@ pre {
 a {
     color: #000;
 
-    :focus, :hover {
+    :hover {
         color: #23527c;
         text-decoration: none;
     }
@@ -129,6 +132,10 @@ h1, .h1, h2, .h2, h3, .h3 {
     word-break: break-all;
 }
 
+li {
+    word-break: break-all;
+}
+
 ul:not(.nav) {
     li:not(.tag-text) {
         > a:not(.no_dot_line) {
@@ -137,6 +144,25 @@ ul:not(.nav) {
     }
 }
 
+.list-inline {
+    > li {
+        margin-bottom: 5px;
+    }
+
+    > .border-center:not(:last-child) {
+        border-right: 1px solid #333;
+    }
+
+    @media (max-width: 768px) {
+        > .border-center:not(:first-child) {
+            border-right: none;
+        }
+    }
+
+    .link-list {
+        font-size: 18px;
+    }
+}
 
 .tag-big {
     font-size: 125%;
@@ -149,14 +175,14 @@ ul:not(.nav) {
 .tag-text {
     background-color: whitesmoke;
 
-    :focus, :hover {
+    :hover {
         background-color: greenyellow;
     }
 
     a {
         color: #000;
 
-        :focus, :hover {
+        :hover {
             color: #000;
             text-decoration: none;
         }

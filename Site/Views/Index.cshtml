@@ -70,17 +70,7 @@
         <p class="thumbnail"><img src="/Asset/Image/@page.String("Image")" alt="image" /></p>
     }
     <div class="text-right">
-        @if(page.ContainsKey("Date")) {
-            <ul class="list-inline">
-                <li class="tag"><i class="fa fa-calendar" aria-hidden="true"></i></li>
-                @{
-                    DateTime date = page.Get("Date",DateTime.MinValue);
-                    string dateText = $"{date.Year}年{date.Month}月{date.Day}日";
-                }
-                <li class="tag">@dateText</li>
-            </ul>
-                    }
-        <ul class="list-inline">
+        <ul class="list-inline">            
             @if(page.Get("Tags",null) != null) {
                 <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
                 foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
@@ -96,9 +86,16 @@
             @if(page.Get("IsWebSite",false)) {
                 <li class="tag"><span class="label label-success">WebSite</span></li>
             }
+            @if(page.ContainsKey("Date")) {
+                DateTime date = page.Get("Date",DateTime.MinValue);
+                string dateText = $"{date.Year}年{date.Month}月{date.Day}日";
+                <li class="tag"><i class="fa fa-calendar" aria-hidden="true"></i></li>
+                <li class="tag">@dateText</li>
+            }
         </ul>
+
     </div>
-                    }
+}
 
 <div class="text-center">
     <a href="/Archive" class="btn btn-default" role="button">MORE ARCHIVE</a>
@@ -112,12 +109,12 @@
 
 <ul class="list-inline">
     <li class="tag-big"><i class="fa fa-tags" aria-hidden="true"></i></li>
-    @{ 
+    @{
         var tags = context.Documents
             .FromPipeline("Tags")
             .OrderByDescending(x => x.Get("TagPages",Enumerable.Empty<IDocument>()).Count())
             .ThenBy(x => x.String("Title",string.Empty))
-            .Take(7);
+            .Take(10);
     }
     @foreach(var page in tags) {
         string tag = page.String("Tag",string.Empty);

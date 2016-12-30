@@ -34,38 +34,59 @@
                 <li class="tag"><span class="label label-success">WebSite</span></li>
             }
         </ul>
-        @{ 
-            var linkList = new List<Tuple<string,string>>();
-            if(Model.String("LinkGithub",null) != null) {
-                linkList.Add(Tuple.Create("Github",Model.String("LinkGithub")));
-            }
-            if(Model.String("LinkBintray",null) != null) {
-                linkList.Add(Tuple.Create("Bintray",Model.String("LinkBintray")));
-            }
-            if(Model.String("LinkQiita",null) != null) {
-                linkList.Add(Tuple.Create("Qiita",Model.String("LinkQiita")));
-            }
-            if(Model.String("LinkGooglePlay",null) != null) {
-                linkList.Add(Tuple.Create("GooglePlay",Model.String("LinkGooglePlay")));
-            }
-        }
-        @for(int i = 0;i < linkList.Count;i++) {
-            if(i != 0) {
-                <span>|</span>
-            }
-            <a href="@linkList[i].Item2">View on @linkList[i].Item1</a>
-        }
-        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-size="large">ツイート</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </div>
 </div>
+
+@{
+    var linkList = new List<Tuple<string,string>>();
+    if(Model.String("LinkGithub",null) != null) {
+        linkList.Add(Tuple.Create("Github",Model.String("LinkGithub")));
+    }
+    if(Model.String("LinkBintray",null) != null) {
+        linkList.Add(Tuple.Create("Bintray",Model.String("LinkBintray")));
+    }
+    if(Model.String("LinkNuGet",null) != null) {
+        linkList.Add(Tuple.Create("NuGet",Model.String("LinkNuGet")));
+    }
+    if(Model.String("LinkQiita",null) != null) {
+        linkList.Add(Tuple.Create("Qiita",Model.String("LinkQiita")));
+    }
+    if(Model.String("LinkGooglePlay",null) != null) {
+        linkList.Add(Tuple.Create("GooglePlay",Model.String("LinkGooglePlay")));
+    }
+}
+@if(linkList.Count > 0) {
+    <ul class="list-inline">
+        <li class="link-list"><i class="fa fa-link" aria-hidden="true"></i></li>
+        @foreach(var link in linkList) {
+            <li class="link-list">
+                <a href="@link.Item2">@link.Item1</a>
+            </li>
+        }
+    </ul>
+}
+
 @RenderBody()
+
+<div class="ninja_onebutton">
+    <script type="text/javascript">
+        //<![CDATA[
+        (function (d) {
+            if (typeof (window.NINJA_CO_JP_ONETAG_BUTTON_50a8479523257e5d998896c9d03acf4a) == 'undefined') {
+                document.write("<sc" + "ript type='text\/javascript' src='\/\/omt.shinobi.jp\/b\/50a8479523257e5d998896c9d03acf4a'><\/sc" + "ript>");
+            } else {
+                window.NINJA_CO_JP_ONETAG_BUTTON_50a8479523257e5d998896c9d03acf4a.ONETAGButton_Load();
+            }
+        })(document);
+        //]]>
+    </script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+</div>
 <div id="disqus_thread"></div>
 <script>
-    (function() {
+    (function () {
         var d = document, s = d.createElement('script');
 
-        s.src = '//@globalMetadata.String("DisqusName",string.Empty)'+'.disqus.com/embed.js';
+        s.src = '//@globalMetadata.String("DisqusName",string.Empty)' + '.disqus.com/embed.js';
 
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
