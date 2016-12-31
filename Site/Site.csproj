@@ -178,7 +178,6 @@
     <Content Include="Views\Project\_ViewStart.cshtml" />
     <Content Include="Views\Page\_Layout.cshtml" />
     <Content Include="Views\Project\Aclog.cshtml" />
-    <Content Include="Views\Project\MeilcliGithubIo.cshtml" />
     <Content Include="Views\CNAME" />
     <Content Include="Views\LICENSE" />
     <Content Include="Views\README.md" />

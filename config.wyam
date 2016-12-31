@@ -13,7 +13,7 @@ GlobalMetadata["Title"] = "滅入るんるん";
 GlobalMetadata["Description"] = "プログラミング関係のことをまとめておくとこ";
 GlobalMetadata["TwitterCardOwner"] = "@meil_mitu";
 GlobalMetadata["DisqusName"] = "meilcli";
-GlobalMetadata["Copyright"] = "The contents of <a href=\"/project/meilcligithubio/\">this website</a> are &copy; 2016 meil under the terms of <a href=\"https://github.com/MeilCli/meilcli.github.io/blob/master/LICENSE\">the MIT License</a>";
+GlobalMetadata["Copyright"] = "The contents of <a href=\"/project/meilclinet/\">this website</a> are &copy; 2016 meil under the terms of <a href=\"https://github.com/MeilCli/MeilCliNet/blob/master/docs/LICENSE\">the MIT License</a>";
 
 	public static class DateHelper {
 
