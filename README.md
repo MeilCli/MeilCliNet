@@ -1,6 +1,6 @@
 This Code is using [Wyam](https://wyam.io/)
 
-Generate To [Code](https://github.com/MeilCli/meilcli.github.io) and [Web Site](http://meilcli.net/)
+Generate To [Code](https://github.com/MeilCli/MeilCliNet/tree/master/docs) and [Web Site](http://blog.meilcli.net/)
 
 ## License
 This sorce is MIT License
