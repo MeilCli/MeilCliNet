@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KLinq</title>
+
+<meta name="description" content="C#のLINQをKotlinで実装したライブラリ">
+<meta property="og:description" content="C#のLINQをKotlinで実装したライブラリ" />
+<meta property="og:title" content="KLinq" />
+<meta name="author" content="滅入るんるん" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@meil_mitu">
+<meta name="twitter:title" content="KLinq">
+<meta name="twitter:description" content="C#のLINQをKotlinで実装したライブラリ">
+<meta name="twitter:image:src" content="https://blog.meilcli.net/Asset/Image/favicon/android-icon-192x192.png">
+
+<link rel="apple-touch-icon" sizes="57x57" href="/Asset/Image/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/Asset/Image/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/Asset/Image/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/Asset/Image/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/Asset/Image/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/Asset/Image/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/Asset/Image/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/Asset/Image/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Asset/Image/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/Asset/Image/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/Asset/Image/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/Asset/Image/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Asset/Image/favicon/favicon-16x16.png">
+<link rel="manifest" href="/Asset/Image/favicon/manifest.json">
+<meta name="msapplication-TileImage" content="/Asset/Image/favicon/ms-icon-144x144.png">
+
+<link rel="stylesheet" href="/Asset/Css/bootstrap.min.css">
+<link rel="stylesheet" href="/Asset/Css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/Asset/Css/vs.css">
+<link rel="stylesheet" href="/Asset/Css/main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/6c0013e839.css">
+
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="/Asset/Js/jquery-1.12.2.min.js"></script>
+<script src="/Asset/Js/bootstrap.min.js"></script>
+
+
+    
+</head>
+<body>
+
+    <header class="header">
+        <nav class="menu navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">メニュー</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">
+            <span><img src="/Asset/Image/favicon/android-icon-192x192.png" style="height: 20px;" /></span>
+            滅入るんるん
+        </a>
+    </div>
+    <div id="gnavi" class="collapse navbar-collapse">
+        <p class="navbar-text">
+            プログラミング関係のことをまとめておくとこ
+        </p>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/tag">Tag</a></li>
+            <li><a href="/project">Project</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+        
+    </header>
+    <div class="container">
+        <ol class="breadcrumb">
+    <li><a href="/">Top</a></li>
+    <li><a href="/project">Project</a></li>
+    <li class="active">KLinq</li>
+</ol>
+<div class="page-header">
+    <p class="h1">KLinq</p>
+    <div class="text-right">
+        <ul class="list-inline">
+                <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                    <li class="tag tag-text"><a href="/tag/kotlin">Kotlin</a></li>
+                            <li class="tag"><span class="label label-info">Library</span></li>
+                                </ul>
+    </div>
+</div>
+
+    <ul class="list-inline">
+        <li class="link-list"><i class="fa fa-link" aria-hidden="true"></i></li>
+            <li class="link-list">
+                <a href="https://github.com/MeilCli/KLinq">Github</a>
+            </li>
+            <li class="link-list">
+                <a href="https://bintray.com/meilcli/maven/KLinq/view#">Bintray</a>
+            </li>
+            <li class="link-list">
+                <a href="http://qiita.com/MeilCli/items/ee33c5c8065d79db6248">Qiita</a>
+            </li>
+    </ul>
+
+<p>C#のLINQをKotlinに移植したもの。KotlinでLINQ使いたい人向け(まだまだ改良の余地はあるけど</p>
+<h1>使用方法</h1>
+<h2>gradle</h2>
+<pre><code>dependencies {
+    compile 'net.meilcli:klinq:1.5'
+}
+</code></pre>
+<h2>使い方</h2>
+<p>KLinqを使用するには以下のインポート文が必要です</p>
+<pre><code class="language-kotlin">import net.meilcli.klinq.*
+</code></pre>
+<p>またKLinq実装のIEnumerableを取り出すのにtoEnumerableなどの拡張関数を以下のように呼び出す必要があります</p>
+<pre><code class="language-kotlin">arrayOf(1,2).toEnumerable().where{ x -&gt; x%2==0 }.toList()
+</code></pre>
+<p>IEnumerableを取り出す拡張関数は以下のものが定義されてます</p>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="text-align: left">クラス</th>
+        <th style="text-align: left">拡張関数</th>
+        <th style="text-align: left">返り値</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left">Iterable<em>&lt;</em>TSource<em>&gt;</em></td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>TSource<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Sequence<em>&lt;</em>TSource<em>&gt;</em></td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>TSource<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>TSource<em>&gt;</em></td>
+        <td style="text-align: left">asEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>TSource<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Array<em>&lt;</em>TSource<em>&gt;</em></td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>TSource<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">BooleanArray</td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>Boolean<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">CharArray</td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>Char<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">ByteArray</td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>Byte<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">ShortArray</td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>Short<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">IntArray</td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>Int<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">LongArray</td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>Long<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">FloatArray</td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>Float<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">DoubleArray</td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>Double<em>&gt;</em></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>また特殊な用法として以下のような書き方も可能です</p>
+<pre><code class="language-kotlin">(1..2).toEnumerable().where{ x -&gt; x%2==0 }.toList()
+</code></pre>
+<p class="alert alert-info">
+その他の拡張関数においてはなるべくC#における実装に近づけたためC#の<a href="https://msdn.microsoft.com/ja-jp/library/9eekhta0(v=vs.110).aspx" class="alert-link">ドキュメント</a>が参考になります
+</p>
+<h2>C#における実装との差異</h2>
+<ul>
+<li>stdlibの拡張関数と関数名が被るためtoEnumeable拡張関数を呼び出す必要があります</li>
+<li>リフレクションを用いずにジェネリクスの規定値を得ることができないため以下の拡張関数においては規定値はnullになります
+<ul>
+<li>elementAtOrDefault</li>
+<li>firstOrDefault</li>
+<li>lastOrDefault</li>
+<li>singleOrDefault</li>
+</ul>
+</li>
+<li>ジェネリクスの型解決がうまくいかないため宣言が変更されているものがあります
+<ul>
+<li>fun &lt;<em>TSource : Number</em>&gt; IEnumerable&lt;<em>TSource</em>&gt;.average() : Double</li>
+<li>fun &lt;<em>TSource : Number</em>&gt; IEnumerable&lt;<em>TSource</em>&gt;.sum() : Double</li>
+</ul>
+</li>
+<li>以下の拡張関数において型を明示した場合に差異が生じる可能性があります
+<ul>
+<li>inline fun &lt;<em>TSource, reified TResult</em>&gt; IEnumerable&lt;<em>TSource</em>&gt;.ofType(): IEnumerable&lt;<em>TResult</em>&gt;</li>
+<li>inline fun &lt;<em>TSource, reified TResult</em>&gt; IEnumerable&lt;<em>TSource</em>&gt;.cast(): IEnumerable&lt;<em>TResult</em>&gt;</li>
+</ul>
+</li>
+</ul>
+<h2>Sequenceとの連携</h2>
+<p>Kotlin標準ライブラリにおける遅延実行リスト操作関数との連携のために以下のものが定義されています</p>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="text-align: left">クラス</th>
+        <th style="text-align: left">拡張関数</th>
+        <th style="text-align: left">返り値</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left">Sequence<em>&lt;</em>TSource<em>&gt;</em></td>
+        <td style="text-align: left">toEnumerable</td>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>TSource<em>&gt;</em></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">IEnumerable<em>&lt;</em>TSource<em>&gt;</em></td>
+        <td style="text-align: left">asSequence</td>
+        <td style="text-align: left">Sequence<em>&lt;</em>TSource<em>&gt;</em></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h2>その他の拡張関数</h2>
+<p>利用率の高いforeach拡張関数が定義されてます</p>
+<pre><code class="language-kotlin">fun &lt;TSource&gt; IEnumerable&lt;TSource&gt;.forEach(action: (TSource) -&gt; Unit)
+fun &lt;TSource&gt; IEnumerable&lt;TSource&gt;.forEach(action: (TSource, Int) -&gt; Unit)
+</code></pre>
+<h1>ライセンス</h1>
+<p>このライブラリは<a href="https://github.com/MeilCli/KLinq/blob/master/LICENSE">The MIT License</a>で公開しています</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>の<a href="https://github.com/JetBrains/kotlin/tree/master/libraries/stdlib">The Kotlin Standard Library</a>を使用しています</p>
+
+
+<div class="ninja_onebutton">
+    <script type="text/javascript">
+        //<![CDATA[
+        (function (d) {
+            if (typeof (window.NINJA_CO_JP_ONETAG_BUTTON_50a8479523257e5d998896c9d03acf4a) == 'undefined') {
+                document.write("<sc" + "ript type='text\/javascript' src='\/\/omt.shinobi.jp\/b\/50a8479523257e5d998896c9d03acf4a'><\/sc" + "ript>");
+            } else {
+                window.NINJA_CO_JP_ONETAG_BUTTON_50a8479523257e5d998896c9d03acf4a.ONETAGButton_Load();
+            }
+        })(document);
+        //]]>
+    </script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    (function () {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//meilcli' + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+    <hr />
+    <footer class="footer">
+        <div class="container">
+    <ul class="list-inline text-center">
+        <li>
+            <a href="https://twitter.com/meil_mitu" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/meilcli" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="https://play.google.com/store/apps/developer?id=meil&hl=ja" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-android fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    </ul>
+    <p class="text-center text-muted">
+        The contents of <a href="/project/meilcligithubio/">this website</a> are &copy; 2016 meil under the terms of <a href="https://github.com/MeilCli/meilcli.github.io/blob/master/LICENSE">the MIT License</a>
+        <br />
+        <ul class="list-inline text-center">
+            <li class="border-center"><a href="https://github.com/MeilCli/MeilCliNet">This Site Code on Github</a></li>
+            <li class="border-center"><a href="http://wyam.io/">Generated by Wyam</a></li>
+            <li class="border-center"><a href="https://github.com/">Hosted by Github</a></li>
+        </ul>
+    </p>
+</div>
+
+        
+    </footer>
+    <script src="/Asset/Js/highlight.pack.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+</body>
+</html>

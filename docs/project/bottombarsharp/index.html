@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BottomBarSharp</title>
+
+<meta name="description" content="オープンソースライブラリBottomBarをC#に翻訳したもの">
+<meta property="og:description" content="オープンソースライブラリBottomBarをC#に翻訳したもの" />
+<meta property="og:title" content="BottomBarSharp" />
+<meta name="author" content="滅入るんるん" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@meil_mitu">
+<meta name="twitter:title" content="BottomBarSharp">
+<meta name="twitter:description" content="オープンソースライブラリBottomBarをC#に翻訳したもの">
+<meta name="twitter:image:src" content="https://blog.meilcli.net/Asset/Image/favicon/android-icon-192x192.png">
+
+<link rel="apple-touch-icon" sizes="57x57" href="/Asset/Image/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/Asset/Image/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/Asset/Image/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/Asset/Image/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/Asset/Image/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/Asset/Image/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/Asset/Image/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/Asset/Image/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Asset/Image/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/Asset/Image/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/Asset/Image/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/Asset/Image/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Asset/Image/favicon/favicon-16x16.png">
+<link rel="manifest" href="/Asset/Image/favicon/manifest.json">
+<meta name="msapplication-TileImage" content="/Asset/Image/favicon/ms-icon-144x144.png">
+
+<link rel="stylesheet" href="/Asset/Css/bootstrap.min.css">
+<link rel="stylesheet" href="/Asset/Css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/Asset/Css/vs.css">
+<link rel="stylesheet" href="/Asset/Css/main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/6c0013e839.css">
+
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="/Asset/Js/jquery-1.12.2.min.js"></script>
+<script src="/Asset/Js/bootstrap.min.js"></script>
+
+
+    
+</head>
+<body>
+
+    <header class="header">
+        <nav class="menu navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">メニュー</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">
+            <span><img src="/Asset/Image/favicon/android-icon-192x192.png" style="height: 20px;" /></span>
+            滅入るんるん
+        </a>
+    </div>
+    <div id="gnavi" class="collapse navbar-collapse">
+        <p class="navbar-text">
+            プログラミング関係のことをまとめておくとこ
+        </p>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/tag">Tag</a></li>
+            <li><a href="/project">Project</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+        
+    </header>
+    <div class="container">
+        <ol class="breadcrumb">
+    <li><a href="/">Top</a></li>
+    <li><a href="/project">Project</a></li>
+    <li class="active">BottomBarSharp</li>
+</ol>
+<div class="page-header">
+    <p class="h1">BottomBarSharp</p>
+    <div class="text-right">
+        <ul class="list-inline">
+                <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                    <li class="tag tag-text"><a href="/tag/xamarin">Xamarin</a></li>
+                    <li class="tag tag-text"><a href="/tag/android">Android</a></li>
+                    <li class="tag tag-text"><a href="/tag/csharp">C#</a></li>
+                            <li class="tag"><span class="label label-info">Library</span></li>
+                                </ul>
+    </div>
+</div>
+
+    <ul class="list-inline">
+        <li class="link-list"><i class="fa fa-link" aria-hidden="true"></i></li>
+            <li class="link-list">
+                <a href="https://github.com/MeilCli/BottomBarSharp">Github</a>
+            </li>
+    </ul>
+
+
+<p>
+    このライブラリは<a href="https://github.com/roughike/BottomBar">BottomBar</a>をC#に翻訳したものです。<br />
+    公式のサポートライブラリに同じコンポーネントが含まれるようになったのでそちらを利用したほうがいいです。
+</p>
+
+<h2>
+    著作について
+</h2>
+
+<p>
+    <a href="https://github.com/roughike/BottomBar">BottomBar</a>は<a href="https://github.com/roughike/BottomBar/blob/master/LICENSE">Apache License 2.0</a>に基づいて配布されています。<br/>
+    Copyright (c) 2016 Iiro Krankka (<a href="http://github.com/roughike">http://github.com/roughike</a>).
+</p>
+
+<h2>
+    このライブラリについて
+</h2>
+
+<ul>
+    <li>Xamarin.Android</li>
+    <li>BottomBar 2.0.2を翻訳しています</li>
+    <li>NuGetで公開していません</li>
+    <li>使用する場合は各自ビルドする必要があります</li>
+</ul>
+
+<h2>
+    BottomBarからの変更点
+</h2>
+
+<ul>
+    <li>xmlに書く名前空間が変更されています(com.roughike.bottombar.BottomBar → bottombarsharp.BottomBar)</li>
+    <li>タブの選択・再選択のEventHandlerも用意しています</li>
+    <li>いくつかのフィールドをプロパティとして用意しました</li>
+</ul>
+
+<h2>
+    使用方法
+</h2>
+
+<ol>
+    <li>ソリューションをPCにダウンロードまたはgitでclone</li>
+    <li>Xamarinに開発環境を含んだVisual Studio 2015でこのソリューションを開く</li>
+    <li>ソリューションをビルドする</li>
+    <li>ソリューションをファイルエクスプローラーで開きbinフォルダ内にあるdllファイルを探す</li>
+    <li>使用したいプロジェクトでそのdllファイルを参照する</li>
+</ol>
+
+<h2>
+    サンプル
+</h2>
+
+<p>
+    <a href="https://github.com/MeilCli/BottomBarSharp/tree/master/BottomBarSharp.App">BottomBar.App</a>プロジェクトを見てください。
+</p>
+
+<h2>
+    トラブルシューティング
+</h2>
+
+<h3>
+    リソースが見つからない
+</h3>
+
+<p>
+    リソースIDに大文字を含めて指定している場合リソースが見つからないことがあるようです、小文字で指定してみてください。<br/>
+    例) @drawable/IconButtonGrey24dp → @drawable/iconbuttongrey24dp
+</p>
+
+<h2>
+    ライセンス
+</h2>
+
+<p>
+    このライブラリは<a href="https://github.com/MeilCli/BottomBarSharp/blob/master/LICENSE.txt">MIT License</a>によって配布されています
+</p>
+
+
+
+<div class="ninja_onebutton">
+    <script type="text/javascript">
+        //<![CDATA[
+        (function (d) {
+            if (typeof (window.NINJA_CO_JP_ONETAG_BUTTON_50a8479523257e5d998896c9d03acf4a) == 'undefined') {
+                document.write("<sc" + "ript type='text\/javascript' src='\/\/omt.shinobi.jp\/b\/50a8479523257e5d998896c9d03acf4a'><\/sc" + "ript>");
+            } else {
+                window.NINJA_CO_JP_ONETAG_BUTTON_50a8479523257e5d998896c9d03acf4a.ONETAGButton_Load();
+            }
+        })(document);
+        //]]>
+    </script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    (function () {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//meilcli' + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+    <hr />
+    <footer class="footer">
+        <div class="container">
+    <ul class="list-inline text-center">
+        <li>
+            <a href="https://twitter.com/meil_mitu" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/meilcli" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="https://play.google.com/store/apps/developer?id=meil&hl=ja" class="no_dot_line">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-android fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    </ul>
+    <p class="text-center text-muted">
+        The contents of <a href="/project/meilcligithubio/">this website</a> are &copy; 2016 meil under the terms of <a href="https://github.com/MeilCli/meilcli.github.io/blob/master/LICENSE">the MIT License</a>
+        <br />
+        <ul class="list-inline text-center">
+            <li class="border-center"><a href="https://github.com/MeilCli/MeilCliNet">This Site Code on Github</a></li>
+            <li class="border-center"><a href="http://wyam.io/">Generated by Wyam</a></li>
+            <li class="border-center"><a href="https://github.com/">Hosted by Github</a></li>
+        </ul>
+    </p>
+</div>
+
+        
+    </footer>
+    <script src="/Asset/Js/highlight.pack.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+</body>
+</html>

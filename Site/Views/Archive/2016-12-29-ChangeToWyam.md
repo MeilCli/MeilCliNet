@@ -14,7 +14,7 @@ Tags: [Wyam, C#]
 
 - C#をRoslynでスクリプトとして動かす
 - パイプライン・モジュール形式になっており簡単なことならC#のコーディングをしなくてもいい
-- ASP .NETでお馴染みのRyzorが使える
+- ASP .NETでお馴染みのRazorが使える
 - YAMLによるメタデータのパースができる
 - その他Less,Markdownなどのモジュールが用意されている
 - NuGetに対応(つまり頑張ればVisualStudioで開発できる)

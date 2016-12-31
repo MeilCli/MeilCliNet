@@ -6,8 +6,9 @@
 #n Wyam.Minification -p
 
 FileSystem.InputPaths.Add("Site/Views");
+FileSystem.OutputPath = "docs";
 
-GlobalMetadata["SiteUrl"] = "https://meilcli.net";
+GlobalMetadata["SiteUrl"] = "https://blog.meilcli.net";
 GlobalMetadata["Title"] = "滅入るんるん";
 GlobalMetadata["Description"] = "プログラミング関係のことをまとめておくとこ";
 GlobalMetadata["TwitterCardOwner"] = "@meil_mitu";
