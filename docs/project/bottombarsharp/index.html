@@ -106,13 +106,23 @@
             <li class="link-list">
                 <a href="https://github.com/MeilCli/BottomBarSharp">Github</a>
             </li>
+            <li class="link-list">
+                <a href="https://www.nuget.org/packages/BottomBarSharp/">NuGet</a>
+            </li>
     </ul>
 
 
 <p>
     このライブラリは<a href="https://github.com/roughike/BottomBar">BottomBar</a>をC#に翻訳したものです。<br />
-    公式のサポートライブラリに同じコンポーネントが含まれるようになったのでそちらを利用したほうがいいです。
+    <del>公式のサポートライブラリに同じコンポーネントが含まれるようになったのでそちらを利用したほうがいいです。</del>
+    CoordinatorLayoutとの親和性、NavigationBarを透過にした時のレイアウトとかを考えればこのライブラリを使う利点はあります。
 </p>
+
+<h2>
+    ドキュメント
+</h2>
+
+<p>英語版になりますが<a href="https://meilcli.github.io/BottomBarSharp">ドキュメント</a>公開しています。</p>
 
 <h2>
     著作について
@@ -130,8 +140,6 @@
 <ul>
     <li>Xamarin.Android</li>
     <li>BottomBar 2.0.2を翻訳しています</li>
-    <li>NuGetで公開していません</li>
-    <li>使用する場合は各自ビルドする必要があります</li>
 </ul>
 
 <h2>
@@ -148,20 +156,16 @@
     使用方法
 </h2>
 
-<ol>
-    <li>ソリューションをPCにダウンロードまたはgitでclone</li>
-    <li>Xamarinに開発環境を含んだVisual Studio 2015でこのソリューションを開く</li>
-    <li>ソリューションをビルドする</li>
-    <li>ソリューションをファイルエクスプローラーで開きbinフォルダ内にあるdllファイルを探す</li>
-    <li>使用したいプロジェクトでそのdllファイルを参照する</li>
-</ol>
+<p>NuGetからインストールしてください、またパッケージマネージャーコンソールでのインストールは以下の通りです。</p>
+
+<pre><code>Install-Package BottomBarSharp</code></pre>
 
 <h2>
     サンプル
 </h2>
 
 <p>
-    <a href="https://github.com/MeilCli/BottomBarSharp/tree/master/BottomBarSharp.App">BottomBar.App</a>プロジェクトを見てください。
+    <a href="https://github.com/MeilCli/BottomBarSharp/tree/master/BottomBarSharp.App">BottomBarSharp.App</a>プロジェクトを見てください。
 </p>
 
 <h2>
