@@ -151,6 +151,7 @@ ul:not(.nav) {
 
     > .border-center:not(:last-child) {
         border-right: 1px solid #333;
+
         @media (max-width: 768px) {
             border-right: none;
         }
@@ -183,5 +184,20 @@ ul:not(.nav) {
             color: #000;
             text-decoration: none;
         }
+    }
+}
+
+.programmer-widget {
+    letter-spacing: initial;
+    font-size: 14px;
+    line-height: 1.42857143;
+    word-break: initial;
+
+    p > a {
+        border-bottom: none;
+    }
+
+    ul:not(.dot) > li:not(.dot) > a:not(.dot) {
+        border-bottom: none;
     }
 }
