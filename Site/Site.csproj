@@ -127,6 +127,7 @@
     <Content Include="Views\Asset\Image\kotlin-highlight.PNG" />
     <Content Include="Views\Asset\Image\kotlin-rouge.PNG" />
     <Content Include="Views\Asset\Image\sojobus_modernwpf.PNG" />
+    <Content Include="Views\Asset\Js\archive.js" />
     <Content Include="Views\Asset\Js\bootstrap.min.js" />
     <Content Include="Views\Asset\Js\highlight.pack.js" />
     <Content Include="Views\Asset\Js\jquery-1.12.2.min.js" />
