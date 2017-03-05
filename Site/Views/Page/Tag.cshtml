@@ -6,7 +6,7 @@ Title: Tag
 @model IDocument
 @{
     var context = Context as IExecutionContext;
-    var globalMetadata = context.GlobalMetadata;
+    var settings = context.Settings;
     var metadata = Model.Metadata;
 }
 

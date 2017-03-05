@@ -6,7 +6,7 @@ Title: Project
 @model IDocument
 @{
     var context = Context as IExecutionContext;
-    var globalMetadata = context.GlobalMetadata;
+    var settings = context.Settings;
     var metadata = Model.Metadata;
 }
 <div class="row">
@@ -14,7 +14,7 @@ Title: Project
         @{
             int count = 0;
         }
-        @foreach(var page in context.Documents.FromPipeline("Projects").Where(x => x.Get("IsProduct",false)).OrderBy(x => x.Source.FileNameWithoutExtension)) {
+        @foreach(var page in context.Documents.FromPipeline("Projects").Where(x => x.Bool("IsProduct")).OrderBy(x => x.Source.FileNameWithoutExtension)) {
             if(count > 0) {
                 <hr />
             }
@@ -31,13 +31,13 @@ Title: Project
                             <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                         }
                     }
-                    @if(page.Get("IsLibrary",false)) {
+                    @if(page.Bool("IsLibrary")) {
                         <li class="tag"><span class="label label-info">Library</span></li>
                     }
-                    @if(page.Get("IsApplication",false)) {
+                    @if(page.Bool("IsApplication")) {
                         <li class="tag"><span class="label label-warning">Application</span></li>
                     }
-                    @if(page.Get("IsWebSite",false)) {
+                    @if(page.Bool("IsWebSite")) {
                         <li class="tag"><span class="label label-success">WebSite</span></li>
                     }
                 </ul>
@@ -49,7 +49,7 @@ Title: Project
         @{
             count = 0;
         }
-        @foreach(var page in context.Documents.FromPipeline("Projects").Where(x => x.Get("IsOldProduct",false)).OrderBy(x => x.Source.FileNameWithoutExtension)) {
+        @foreach(var page in context.Documents.FromPipeline("Projects").Where(x => x.Bool("IsOldProduct")).OrderBy(x => x.Source.FileNameWithoutExtension)) {
             if(count > 0) {
                 <hr />
             }
@@ -66,13 +66,13 @@ Title: Project
                             <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                         }
                     }
-                    @if(page.Get("IsLibrary",false)) {
+                    @if(page.Bool("IsLibrary")) {
                         <li class="tag"><span class="label label-info">Library</span></li>
                     }
-                    @if(page.Get("IsApplication",false)) {
+                    @if(page.Bool("IsApplication")) {
                         <li class="tag"><span class="label label-warning">Application</span></li>
                     }
-                    @if(page.Get("IsWebSite",false)) {
+                    @if(page.Bool("IsWebSite")) {
                         <li class="tag"><span class="label label-success">WebSite</span></li>
                     }
                 </ul>

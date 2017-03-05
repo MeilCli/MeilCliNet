@@ -6,7 +6,7 @@
 @model IDocument
 @{
     var context = Context as IExecutionContext;
-    var globalMetadata = context.GlobalMetadata;
+    var settings = context.Settings;
     var metadata = Model.Metadata;
 }
 <ol class="breadcrumb">
@@ -24,13 +24,13 @@
                     <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                 }
             }
-            @if(Model.Get("IsLibrary",false)) {
+            @if(Model.Bool("IsLibrary")) {
                 <li class="tag"><span class="label label-info">Library</span></li>
             }
-            @if(Model.Get("IsApplication",false)) {
+            @if(Model.Bool("IsApplication")) {
                 <li class="tag"><span class="label label-warning">Application</span></li>
             }
-            @if(Model.Get("IsWebSite",false)) {
+            @if(Model.Bool("IsWebSite")) {
                 <li class="tag"><span class="label label-success">WebSite</span></li>
             }
         </ul>
@@ -86,7 +86,7 @@
     (function () {
         var d = document, s = d.createElement('script');
 
-        s.src = '//@globalMetadata.String("DisqusName",string.Empty)' + '.disqus.com/embed.js';
+        s.src = '//@settings.String("DisqusName",string.Empty)' + '.disqus.com/embed.js';
 
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);

@@ -3,7 +3,7 @@
 @model IDocument
 @{
     var context = Context as IExecutionContext;
-    var globalMetadata = context.GlobalMetadata;
+    var settings = context.Settings;
     var metadata = Model.Metadata;
 }
 <div class="page-header">
@@ -14,7 +14,7 @@
 @{
     int count = 0;
 }
-@foreach(var page in context.Documents.WhereContainsKey("IsRecommended").Where(x => x.Get("IsRecommended",false)).OrderBy(x => x.Source.FileNameWithoutExtension)) {
+@foreach(var page in context.Documents.WhereContainsKey("IsRecommended").Where(x => x.Bool("IsRecommended")).OrderBy(x => x.Source.FileNameWithoutExtension)) {
     if(count > 0) {
         <hr />
     }
@@ -31,13 +31,13 @@
                     <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                 }
             }
-            @if(page.Get("IsLibrary",false)) {
+            @if(page.Bool("IsLibrary")) {
                 <li class="tag"><span class="label label-info">Library</span></li>
             }
-            @if(page.Get("IsApplication",false)) {
+            @if(page.Bool("IsApplication")) {
                 <li class="tag"><span class="label label-warning">Application</span></li>
             }
-            @if(page.Get("IsWebSite",false)) {
+            @if(page.Bool("IsWebSite")) {
                 <li class="tag"><span class="label label-success">WebSite</span></li>
             }
         </ul>
@@ -64,7 +64,10 @@
     <h2 class="h2">
         <a href="@context.GetLink(page).Replace("/index","")">@Html.Raw(page.String("Title",string.Empty))</a>
     </h2>
-    string description = page.String("Description",null) ?? page.String("Excerpt",null) ?? globalMetadata.String("Description",string.Empty);
+    string defaultDescription = settings.String("Description",string.Empty);
+    string pageDescription = page.String("Description",null);
+    string excerptDescription = page.String("Excerpt",null);
+    string description = (pageDescription == defaultDescription ? excerptDescription : (pageDescription ?? excerptDescription)) ?? defaultDescription;
     <p>@Html.Raw(description)</p>
     if(page.String("Image",null) != null) {
         <p class="thumbnail"><img src="/Asset/Image/@page.String("Image")" alt="image" /></p>
@@ -77,13 +80,13 @@
                     <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                 }
             }
-            @if(page.Get("IsLibrary",false)) {
+            @if(page.Bool("IsLibrary")) {
                 <li class="tag"><span class="label label-info">Library</span></li>
             }
-            @if(page.Get("IsApplication",false)) {
+            @if(page.Bool("IsApplication")) {
                 <li class="tag"><span class="label label-warning">Application</span></li>
             }
-            @if(page.Get("IsWebSite",false)) {
+            @if(page.Bool("IsWebSite")) {
                 <li class="tag"><span class="label label-success">WebSite</span></li>
             }
             @if(page.ContainsKey("Date")) {

@@ -3,18 +3,21 @@
 @model IDocument
 @{
     var context = Context as IExecutionContext;
-    var globalMetadata = context.GlobalMetadata;
+    var settings = context.Settings;
     var metadata = Model.Metadata;
 }
 @{
-    string title = metadata.String("Title",null) ?? globalMetadata.String("Title",string.Empty);
-    string description = metadata.String("Description",null) ?? metadata.String("Excerpt",null) ?? globalMetadata.String("Description",string.Empty);
+    string title = metadata.String("Title",null) ?? settings.String("Title",string.Empty);
+    string defaultDescription = settings.String("Description",string.Empty);
+    string pageDescription = metadata.String("Description",null);
+    string excerptDescription = metadata.String("Excerpt",null);
+    string description = (pageDescription == defaultDescription ? excerptDescription : (pageDescription ?? excerptDescription)) ?? defaultDescription;
     string pageImage = metadata.String("Image",null);
     string imageUrl;
     if(pageImage != null) {
-        imageUrl = $"{globalMetadata.String("SiteUrl",string.Empty)}/Asset/Image/{pageImage}";
+        imageUrl = $"{settings.String("SiteUrl",string.Empty)}/Asset/Image/{pageImage}";
     } else {
-        imageUrl = $"{globalMetadata.String("SiteUrl",string.Empty)}/Asset/Image/favicon/android-icon-192x192.png";
+        imageUrl = $"{settings.String("SiteUrl",string.Empty)}/Asset/Image/favicon/android-icon-192x192.png";
     }
 }
 
@@ -27,9 +30,9 @@
 <meta name="description" content="@Html.Raw(description)">
 <meta property="og:description" content="@Html.Raw(description)" />
 <meta property="og:title" content="@Html.Raw(title)" />
-<meta name="author" content="@Html.Raw(globalMetadata.String("Title",string.Empty))" />
+<meta name="author" content="@Html.Raw(settings.String("Title",string.Empty))" />
 <meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@Html.Raw(globalMetadata.String("TwitterCardOwner",string.Empty))">
+<meta name="twitter:site" content="@Html.Raw(settings.String("TwitterCardOwner",string.Empty))">
 <meta name="twitter:title" content="@Html.Raw(title)">
 <meta name="twitter:description" content="@Html.Raw(description)">
 <meta name="twitter:image:src" content="@Html.Raw(imageUrl)">

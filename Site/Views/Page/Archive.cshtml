@@ -6,7 +6,7 @@ Title: Archive
 @model IDocument
 @{
     var context = Context as IExecutionContext;
-    var globalMetadata = context.GlobalMetadata;
+    var settings = context.Settings;
     var metadata = Model.Metadata;
 }
 
@@ -30,26 +30,29 @@ Title: Archive
             <h2 class="h2">
                 <a href="@context.GetLink(page).Replace("/index","")">@Html.Raw(page.String("Title",string.Empty))</a>
             </h2>
-            string description = page.String("Description",null) ?? page.String("Excerpt",null) ?? globalMetadata.String("Description",string.Empty);
+            string defaultDescription = settings.String("Description",string.Empty);
+            string pageDescription = page.String("Description",null);
+            string excerptDescription = page.String("Excerpt",null);
+            string description = (pageDescription == defaultDescription ? excerptDescription : (pageDescription ?? excerptDescription)) ?? defaultDescription;
             <p>@Html.Raw(description)</p>
             if(page.String("Image",null) != null) {
                 <p class="thumbnail"><img src="/Asset/Image/@page.String("Image")" alt="image" /></p>
             }
             <div class="text-right">
-                <ul class="list-inline">  
+                <ul class="list-inline">
                     @if(page.Get("Tags",null) != null) {
                         <li class="tag"><i class="fa fa-tags" aria-hidden="true"></i></li>
                         foreach(var tag in page.Get("Tags",Enumerable.Empty<string>())) {
                             <li class="tag tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw(tag)</a></li>
                         }
                     }
-                    @if(page.Get("IsLibrary",false)) {
+                    @if(page.Bool("IsLibrary")) {
                         <li class="tag"><span class="label label-info">Library</span></li>
                     }
-                    @if(page.Get("IsApplication",false)) {
+                    @if(page.Bool("IsApplication")) {
                         <li class="tag"><span class="label label-warning">Application</span></li>
                     }
-                    @if(page.Get("IsWebSite",false)) {
+                    @if(page.Bool("IsWebSite")) {
                         <li class="tag"><span class="label label-success">WebSite</span></li>
                     }
                     @if(page.ContainsKey("Date")) {
@@ -66,7 +69,7 @@ Title: Archive
     </div>
 </div>
 <div class="navigation">
-    @if(Model.Get("HasNextPage",false)) {
+    @if(Model.Bool("HasNextPage")) {
         string page = $"index-{Model.Get("CurrentPage",1) + 1}.html";
         <a href="@page">次へ</a>
     }

@@ -3,7 +3,7 @@
 @model IDocument
 @{
     var context = Context as IExecutionContext;
-    var globalMetadata = context.GlobalMetadata;
+    var settings = context.Settings;
     var metadata = Model.Metadata;
 }
 <nav class="menu navbar navbar-default">
@@ -17,12 +17,12 @@
         </button>
         <a href="/" class="navbar-brand">
             <span><img src="/Asset/Image/favicon/android-icon-192x192.png" style="height: 20px;" /></span>
-            @Html.Raw(globalMetadata.String("Title",string.Empty))
+            @Html.Raw(settings.String("Title",string.Empty))
         </a>
     </div>
     <div id="gnavi" class="collapse navbar-collapse">
         <p class="navbar-text">
-            @Html.Raw(globalMetadata.String("Description",string.Empty))
+            @Html.Raw(settings.String("Description",string.Empty))
         </p>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/archive">Archive</a></li>

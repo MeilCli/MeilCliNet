@@ -3,7 +3,7 @@
 @model IDocument
 @{
     var context = Context as IExecutionContext;
-    var globalMetadata = context.GlobalMetadata;
+    var settings = context.Settings;
     var metadata = Model.Metadata;
 }
 <div class="container">
@@ -34,7 +34,7 @@
         </li>
     </ul>
     <p class="text-center text-muted">
-        @Html.Raw(globalMetadata.String("Copyright",string.Empty))
+        @Html.Raw(settings.String("Copyright",string.Empty))
         <br />
         <ul class="list-inline text-center">
             <li class="border-center"><a href="https://github.com/MeilCli/MeilCliNet">This Site Code on Github</a></li>

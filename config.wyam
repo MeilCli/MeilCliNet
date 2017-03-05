@@ -8,12 +8,12 @@
 FileSystem.InputPaths.Add("Site/Views");
 FileSystem.OutputPath = "docs";
 
-GlobalMetadata["SiteUrl"] = "https://blog.meilcli.net";
-GlobalMetadata["Title"] = "滅入るんるん";
-GlobalMetadata["Description"] = "プログラミング関係のことをまとめておくとこ";
-GlobalMetadata["TwitterCardOwner"] = "@meil_mitu";
-GlobalMetadata["DisqusName"] = "meilcli";
-GlobalMetadata["Copyright"] = "The contents of <a href=\"/project/meilclinet/\">this website</a> are &copy; 2016 meil under the terms of <a href=\"https://github.com/MeilCli/MeilCliNet/blob/master/docs/LICENSE\">the MIT License</a>";
+Settings["SiteUrl"] = "https://blog.meilcli.net";
+Settings["Title"] = "滅入るんるん";
+Settings["Description"] = "プログラミング関係のことをまとめておくとこ";
+Settings["TwitterCardOwner"] = "@meil_mitu";
+Settings["DisqusName"] = "meilcli";
+Settings["Copyright"] = "The contents of <a href=\"/project/meilclinet/\">this website</a> are &copy; 2016 meil under the terms of <a href=\"https://github.com/MeilCli/MeilCliNet/blob/master/docs/LICENSE\">the MIT License</a>";
 
 	public static class DateHelper {
 
