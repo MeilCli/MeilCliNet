@@ -75,7 +75,7 @@ Pipelines.Add("Tags",
 				{ "Title", $"{x} Tag" },
 				{ "Description", $"{x}タグに関するページを表示します" },
 				{ "Tag", x},
-				{ "TagPages", @ctx.Documents.WhereContainsKey("DestinationFilePath").WhereContainsKey("Tags").Where(y => y.Get<IEnumerable<string>>("Tags").Contains(x)) }
+				{ "TagPages", @ctx.Documents.GroupBy(y => y.String("DestinationFilePath")).Select(y => y.First()).WhereContainsKey("Tags").Where(y => y.Get<IEnumerable<string>>("Tags").Contains(x)) }
 			})
 		)
 	)
