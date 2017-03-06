@@ -47,6 +47,10 @@
 <script src="/Asset/Js/jquery-1.12.2.min.js" defer></script>
 <script src="/Asset/Js/bootstrap.min.js" defer></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css" />
+<link rel="stylesheet" href="/Asset/Css/ProgrammerWidget.css" />
+<script src="/Asset/Js//ProgrammerWidget.js" async defer></script>
+
 
     
 </head>
@@ -83,12 +87,16 @@
         
     </header>
     <div class="container">
-        <ol class="breadcrumb">
-    <li><a href="/">Top</a></li>
-    <li><a href="/archive">Archive</a></li>
-    <li class="active">Xamarin.Androidでのアプリ開発</li>
-</ol>
-<div class="page-header">
+        
+    <ol class="breadcrumb">
+        <li><a href="/">Top</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li class="active">Xamarin.Androidでのアプリ開発</li>
+    </ol>
+
+        <div class="row">
+            <div class="col-md-9 col-xs-12">
+                <div class="page-header">
     <p class="h1">Xamarin.Androidでのアプリ開発</p>
     <div class="text-right">
         <ul class="list-inline">
@@ -192,6 +200,18 @@ namespace Setting {
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+
+            <div class="col-md-3 visible-md-block visible-lg-block">
+                
+                <div class="programmer-widget-github-with-activity" target-user="meilcli" target-list-height="300px"></div>
+                <br />
+                <div class="programmer-widget-qiita-with-items" target-user="meilcli" target-list-height="300px"></div>
+                <br />
+                <div class="programmer-widget-teratail-with-answer" target-user="meilcli" target-list-height="300px"></div>
+                
+            </div>
+        </div>
     </div>
     <hr />
     <footer class="footer">
@@ -241,4 +261,5 @@ namespace Setting {
     </script>
     
 </body>
+
 </html>

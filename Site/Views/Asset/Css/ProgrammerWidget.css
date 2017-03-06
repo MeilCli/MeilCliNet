@@ -1,0 +1,437 @@
+﻿/*
+    Head
+*/
+.programmer-widget-head-container {
+    border-bottom-color: darkgray;
+    border-bottom-width: 2px;
+    border-bottom-style: dotted;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.programmer-widget-logo {
+    font-style: italic;
+    font-size: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 16px;
+}
+
+.programmer-widget-follow {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 16px;
+    color: dodgerblue;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/*
+    Content
+*/
+.programmer-widget-image-container {
+    width: 30%;
+    text-align: center;
+}
+
+.programmer-widget-image {
+    width: 90px;
+    height: 90px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-style: solid;
+    border-color: lightblue;
+    border-width: 1px;
+    border-radius: 45px;
+}
+
+.programmer-widget-heading {
+    position: absolute;
+    left: calc(30% + 16px);
+    font-size: 2em;
+}
+
+
+/*
+    List
+*/
+
+.programmer-widget-list-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+    border-top-color: darkgray;
+    border-top-width: 2px;
+    border-top-style: dotted;
+}
+
+    .programmer-widget-list-container > div {
+        flex-grow: 1;
+    }
+
+.programmer-widget-list-number {
+    text-align: center;
+}
+
+    .programmer-widget-list-number > a {
+        color: dodgerblue;
+        font-size: 18px;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+.programmer-widget-list-title {
+    text-align: center;
+    color: darkslategrey;
+    font-size: 14px;
+}
+
+/*
+    Root
+*/
+
+.programmer-widget {
+    width: 99.9%;
+    max-width: 450px;
+    min-height: 200px;
+    position: relative;
+    border-color: darkgray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+/*
+    Theme
+*/
+/*
+    Qiita
+*/
+.programmer-widget-paragraph-qiita:before {
+    content: "Top Tags";
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 16px;
+}
+
+.programmer-widget-paragraph-qiita {
+    position: absolute;
+    top: 90px;
+    left: calc(30% + 16px);
+    font-weight: 500;
+}
+
+.programmer-widget-qiita-items-container {
+    height: 500px;
+    border-top-color: darkgray;
+    border-top-width: 2px;
+    border-top-style: dotted;
+    overflow-x: auto;
+}
+
+    .programmer-widget-qiita-items-container > hr {
+        margin: 0px 8px;
+        border-style: none;
+        border-width: 0px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: lightgray;
+    }
+
+.programmer-widget-qiita-items-panel {
+    display: flex;
+}
+
+.programmer-widget-qiita-items-panel-last {
+    margin-left: auto;
+}
+
+.programmer-widget-qiita-items-image {
+    height: 40px;
+    width: 40px;
+    margin: 8px;
+}
+
+.programmer-widget-qiita-items-head {
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    color: grey;
+}
+
+    .programmer-widget-qiita-items-head > a {
+        color: dodgerblue;
+        text-decoration: none;
+    }
+
+.programmer-widget-qiita-items-title {
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+    .programmer-widget-qiita-items-title > a {
+        color: dodgerblue;
+        font-size: 16px;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+.programmer-widget-qiita-items-tags {
+    padding-left: 0px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+    .programmer-widget-qiita-items-tags > li {
+        display: inline-block;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        color: gray;
+        font-size: 12px;
+    }
+
+        .programmer-widget-qiita-items-tags > li > a {
+            background-color: ghostwhite;
+            color: gray;
+            padding: 4px 8px;
+            text-decoration: none;
+        }
+
+            .programmer-widget-qiita-items-tags > li > a:hover {
+                background-color: lightgray;
+            }
+
+.programmer-widget-qiita-items-stock {
+    font-size: 12px;
+    color: gray;
+    width: 35px;
+    text-align: right;
+    margin-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+.programmer-widget-qiita-items-comment {
+    font-size: 12px;
+    color: gray;
+    width: 35px;
+    text-align: right;
+    margin-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+/*
+    Teratail
+*/
+.programmer-widget-paragraph-teratail-container {
+    position: absolute;
+    top: 90px;
+    left: calc(30% + 16px);
+    font-weight: 500;
+    padding-left: 0px;
+}
+
+.programmer-widget-paragraph-teratail-list1:before {
+    content: "Total Rank";
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 8px;
+}
+
+.programmer-widget-paragraph-teratail-list1 {
+    display: inline-block;
+}
+
+.programmer-widget-paragraph-teratail-list2:before {
+    content: "Weekly Rank";
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 8px;
+}
+
+.programmer-widget-paragraph-teratail-list2 {
+    display: inline-block;
+    margin-left: 16px;
+}
+
+.programmer-widget-teratail-items-container {
+    height: 500px;
+    border-top-color: darkgray;
+    border-top-width: 2px;
+    border-top-style: dotted;
+    overflow-x: auto;
+}
+
+    .programmer-widget-teratail-items-container > hr {
+        margin: 0px 8px;
+        border-style: none;
+        border-width: 0px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: lightgray;
+    }
+
+.programmer-widget-teratail-items-panel {
+    display: flex;
+}
+
+.programmer-widget-teratail-items-image {
+    height: 40px;
+    width: 40px;
+    margin: 8px;
+}
+
+.programmer-widget-teratail-items-head {
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    color: grey;
+}
+
+    .programmer-widget-teratail-items-head > a {
+        color: dodgerblue;
+        text-decoration: none;
+    }
+
+.programmer-widget-teratail-items-title {
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+    .programmer-widget-teratail-items-title > a {
+        color: dodgerblue;
+        font-size: 16px;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+.programmer-widget-teratail-items-tags {
+    padding-left: 0px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+    .programmer-widget-teratail-items-tags > li {
+        display: inline-block;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        color: gray;
+        font-size: 12px;
+    }
+
+        .programmer-widget-teratail-items-tags > li > a {
+            background-color: ghostwhite;
+            color: gray;
+            padding: 4px 8px;
+            text-decoration: none;
+        }
+
+            .programmer-widget-teratail-items-tags > li > a:hover {
+                background-color: lightgray;
+            }
+
+/*
+    Github
+*/
+.programmer-widget-paragraph-github:before {
+    content: "Top Languages";
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 16px;
+}
+
+.programmer-widget-paragraph-github {
+    position: absolute;
+    top: 90px;
+    left: calc(30% + 16px);
+    font-weight: 500;
+}
+
+.programmer-widget-github-items-container {
+    height: 500px;
+    border-top-color: darkgray;
+    border-top-width: 2px;
+    border-top-style: dotted;
+    overflow-x: auto;
+}
+
+    .programmer-widget-github-items-container > hr {
+        margin: 0px 8px;
+        border-style: none;
+        border-width: 0px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: lightgray;
+    }
+
+.programmer-widget-github-items-panel {
+    display: flex;
+}
+
+.programmer-widget-github-items-image {
+    height: 40px;
+    width: 40px;
+    margin: 8px;
+    text-align: center;
+}
+
+    .programmer-widget-github-items-image > span {
+        width: 30px;
+    }
+
+        .programmer-widget-github-items-image > span:before {
+            font-size: 40px;
+            color: gray;
+        }
+
+.programmer-widget-github-items-head {
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    color: grey;
+}
+
+.programmer-widget-github-items-title {
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+    .programmer-widget-github-items-title > a {
+        color: dodgerblue;
+        font-size: 16px;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+.programmer-widget-github-items-list {
+    padding-left: 0px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    list-style-type: none;
+}
+
+    .programmer-widget-github-items-list > li {
+        font-size: 12px;
+        color: grey;
+    }
+
+        .programmer-widget-github-items-list > li > a {
+            color: dodgerblue;
+            text-decoration: none;
+        }
+
+        .programmer-widget-github-items-list > li > img {
+            width: 12px;
+            height: 12px;
+        }

@@ -11,7 +11,22 @@
         @RenderSection("header",required: false)
     </header>
     <div class="container">
-        @RenderBody()
+        @RenderSection("breadcrumb",required: false)
+        <div class="row">
+            <div class="col-md-9 col-xs-12">
+                @RenderBody()
+            </div>
+
+            <div class="col-md-3 visible-md-block visible-lg-block">
+                @RenderSection("preSidebar",required: false)
+                <div class="programmer-widget-github-with-activity" target-user="meilcli" target-list-height="300px"></div>
+                <br />
+                <div class="programmer-widget-qiita-with-items" target-user="meilcli" target-list-height="300px"></div>
+                <br />
+                <div class="programmer-widget-teratail-with-answer" target-user="meilcli" target-list-height="300px"></div>
+                @RenderSection("postSidebar",required: false)
+            </div>
+        </div>
     </div>
     <hr />
     <footer class="footer">
@@ -24,4 +39,5 @@
     </script>
     @RenderSection("footer_script",required: false)
 </body>
+
 </html>

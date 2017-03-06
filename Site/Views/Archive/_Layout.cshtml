@@ -9,11 +9,13 @@
     var settings = context.Settings;
     var metadata = Model.Metadata;
 }
-<ol class="breadcrumb">
-    <li><a href="/">Top</a></li>
-    <li><a href="/archive">Archive</a></li>
-    <li class="active">@Html.Raw(Model.String("Title",string.Empty))</li>
-</ol>
+@section breadcrumb{
+    <ol class="breadcrumb">
+        <li><a href="/">Top</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li class="active">@Html.Raw(Model.String("Title",string.Empty))</li>
+    </ol>
+}
 <div class="page-header">
     <p class="h1">@Html.Raw(Model.String("Title",string.Empty))</p>
     <div class="text-right">

@@ -100,6 +100,7 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Asset\Css\bootstrap-theme.min.css" />
     <Content Include="Views\Asset\Css\bootstrap.min.css" />
+    <Content Include="Views\Asset\Css\ProgrammerWidget.css" />
     <Content Include="Views\Asset\Css\vs.css" />
     <Content Include="Views\Asset\Image\favicon\android-icon-144x144.png" />
     <Content Include="Views\Asset\Image\favicon\android-icon-192x192.png" />
@@ -136,6 +137,7 @@
     <Content Include="Views\Asset\Js\highlight.pack.js" />
     <Content Include="Views\Asset\Js\jquery-1.12.2.min.js" />
     <Content Include="Views\Asset\Js\jquery.infinitescroll.min.js" />
+    <Content Include="Views\Asset\Js\ProgrammerWidget.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
