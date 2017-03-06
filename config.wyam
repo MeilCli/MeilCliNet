@@ -45,7 +45,8 @@ Pipelines.Add("Archives",
 	If(
 		(doc,ctx) => doc.String("Excerpt",null) != null,
 		Meta("Excerpt",System.Text.RegularExpressions.Regex.Replace(@doc.String("Excerpt"), "<.*?>", string.Empty))
-	)
+	),
+	WriteFiles((doc,ctx) => $"Archive/{doc.Source.FileNameWithoutExtension.ToString().Replace("-","/")}/index.html".ToLower())
 );
 
 Pipelines.Add("Projects",
@@ -60,7 +61,8 @@ Pipelines.Add("Projects",
 	If(
 		(doc,ctx) => doc.String("Excerpt",null) != null,
 		Meta("Excerpt",System.Text.RegularExpressions.Regex.Replace(@doc.String("Excerpt"), "<.*?>", string.Empty))
-	)
+	),
+	WriteFiles((doc,ctx) => $"Project/{doc.Source.FileNameWithoutExtension}/index.html".ToLower())
 );
 
 Pipelines.Add("Tags",
@@ -73,7 +75,7 @@ Pipelines.Add("Tags",
 				{ "Title", $"{x} Tag" },
 				{ "Description", $"{x}タグに関するページを表示します" },
 				{ "Tag", x},
-				{ "TagPages", @ctx.Documents.WhereContainsKey("Tags").Where(y => y.Get<IEnumerable<string>>("Tags").Contains(x)) }
+				{ "TagPages", @ctx.Documents.WhereContainsKey("DestinationFilePath").WhereContainsKey("Tags").Where(y => y.Get<IEnumerable<string>>("Tags").Contains(x)) }
 			})
 		)
 	)
