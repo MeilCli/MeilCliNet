@@ -45,9 +45,7 @@ Pipelines.Add("Archives",
 	If(
 		(doc,ctx) => doc.String("Excerpt",null) != null,
 		Meta("Excerpt",System.Text.RegularExpressions.Regex.Replace(@doc.String("Excerpt"), "<.*?>", string.Empty))
-	),
-	Razor(),
-	WriteFiles((doc,ctx) => $"Archive/{doc.Source.FileNameWithoutExtension.ToString().Replace("-","/")}/index.html".ToLower())	
+	)
 );
 
 Pipelines.Add("Projects",
@@ -62,9 +60,7 @@ Pipelines.Add("Projects",
 	If(
 		(doc,ctx) => doc.String("Excerpt",null) != null,
 		Meta("Excerpt",System.Text.RegularExpressions.Regex.Replace(@doc.String("Excerpt"), "<.*?>", string.Empty))
-	),
-	Razor(),
-	WriteFiles((doc,ctx) => $"Project/{doc.Source.FileNameWithoutExtension}/index.html".ToLower())
+	)
 );
 
 Pipelines.Add("Tags",
@@ -80,17 +76,13 @@ Pipelines.Add("Tags",
 				{ "TagPages", @ctx.Documents.WhereContainsKey("Tags").Where(y => y.Get<IEnumerable<string>>("Tags").Contains(x)) }
 			})
 		)
-	),
-	Razor().WithViewStart(new FilePath("/Tag/_ViewStart.cshtml")),
-	WriteFiles((doc,ctx) => $"Tag/{doc.String("Tag",string.Empty).Replace("#","Sharp")}/index.html".ToLower())
+	)
 );
 
 Pipelines.Add("Pages",
 	ReadFiles("Page/{!_,}*.cshtml"),
 	Where((doc,ctx) => doc.Source.FileNameWithoutExtension.ToString() != "Archive"),
-	FrontMatter(Yaml()),
-	Razor(),
-	WriteFiles((doc,ctx) => $"{doc.Source.FileNameWithoutExtension}/index.html".ToLower())
+	FrontMatter(Yaml())
 );
 
 Pipelines.Add("Archive",
@@ -99,16 +91,66 @@ Pipelines.Add("Archive",
 		Documents("Archives"),
 		OrderBy((doc, ctx) => doc["Date"]).Descending().ThenBy((doc,ctx) => doc.String("Title",string.Empty))	
 	),
-	FrontMatter(Yaml()),
-	Razor(),
-	WriteFiles((doc,ctx) => "Archive/index"+(doc.Get<int>("CurrentPage") == 1 ? "" : ("-"+doc.Get<int>("CurrentPage")))+".html".ToLower())
+	FrontMatter(Yaml())
 );
 
 Pipelines.Add("Index",
 	ReadFiles("Index.cshtml"),
-	FrontMatter(Yaml()),
-	Razor(),
-	WriteFiles((doc,ctx) => new FilePath("index.html"))
+	FrontMatter(Yaml())
+);
+
+Pipelines.Add("RenderArchives",
+	If(
+		(doc,ctx) => ctx.Documents["Archives"].Any(),
+		Documents("Archives"),
+		Razor(),
+		WriteFiles((doc,ctx) => $"Archive/{doc.Source.FileNameWithoutExtension.ToString().Replace("-","/")}/index.html".ToLower())	
+	)
+);
+
+Pipelines.Add("RenderProjects",
+	If(
+		(doc,ctx) => ctx.Documents["Projects"].Any(),
+		Documents("Projects"),
+		Razor(),
+		WriteFiles((doc,ctx) => $"Project/{doc.Source.FileNameWithoutExtension}/index.html".ToLower())
+	)
+);
+
+Pipelines.Add("RenderTags",
+	If(
+		(doc,ctx) => ctx.Documents["Tags"].Any(),
+		Documents("Tags"),
+		Razor().WithViewStart(new FilePath("/Tag/_ViewStart.cshtml")),
+		WriteFiles((doc,ctx) => $"Tag/{doc.String("Tag",string.Empty).Replace("#","Sharp")}/index.html".ToLower())
+	)
+);
+
+Pipelines.Add("RenderPages",
+	If(
+		(doc,ctx) => ctx.Documents["Pages"].Any(),
+		Documents("Pages"),
+		Razor(),
+		WriteFiles((doc,ctx) => $"{doc.Source.FileNameWithoutExtension}/index.html".ToLower())
+	)
+);
+
+Pipelines.Add("RenderArchive",
+	If(
+		(doc,ctx) => ctx.Documents["Archive"].Any(),
+		Documents("Archive"),
+		Razor(),
+		WriteFiles((doc,ctx) => "Archive/index"+(doc.Get<int>("CurrentPage") == 1 ? "" : ("-"+doc.Get<int>("CurrentPage")))+".html".ToLower())
+	)
+);
+
+Pipelines.Add("RenderIndex",
+	If(
+		(doc,ctx) => ctx.Documents["Index"].Any(),
+		Documents("Index"),
+		Razor(),
+		WriteFiles((doc,ctx) => new FilePath("index.html"))
+	)
 );
 
 Pipelines.Add("Asset",

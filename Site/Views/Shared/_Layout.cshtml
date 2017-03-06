@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Wyam.Common.Documents;
+@using Wyam.Common.Execution;
+@model IDocument
+@{
+    var context = Context as IExecutionContext;
+    var settings = context.Settings;
+    var metadata = Model.Metadata;
+}
+<!DOCTYPE html>
 <html>
 <head>
     @Html.Partial("_Head")
@@ -19,6 +27,30 @@
 
             <div class="col-md-3 visible-md-block visible-lg-block">
                 @RenderSection("preSidebar",required: false)
+
+                <h2>
+                    Famous Tag
+                </h2>
+                <ul class="list-inline">
+                    <li class="tag-big"><i class="fa fa-tags" aria-hidden="true"></i></li>
+                    @{
+                        var tags = context.Documents
+                            .FromPipeline("Tags")
+                            .OrderByDescending(x => x.Get("TagPages",Enumerable.Empty<IDocument>()).Count())
+                            .ThenBy(x => x.String("Title",string.Empty))
+                            .Take(10);
+                    }
+                    @foreach(var page in tags) {
+                        string tag = page.String("Tag",string.Empty);
+                        var tagPages = page.Get("TagPages",Enumerable.Empty<IDocument>());
+                        <li class="tag-big tag-text"><a href="/tag/@Html.Raw(Uri.EscapeDataString(tag.Replace("#","Sharp").ToLower()))">@Html.Raw($"{tag}({tagPages.Count()})")</a></li>
+                    }
+                </ul>
+                <div class="text-center">
+                    <a href="/tag" class="btn btn-default" role="button">MORE TAG</a>
+                </div>
+
+                <br/>
                 <div class="programmer-widget-github-with-activity" target-user="meilcli" target-list-height="300px"></div>
                 <br />
                 <div class="programmer-widget-qiita-with-items" target-user="meilcli" target-list-height="300px"></div>
